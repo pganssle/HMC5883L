@@ -13,7 +13,7 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 #define HMC5883L_H
 
 #include <Arduino.h>
-#include <I2Ccomm.h>
+#include <I2CDev.h>
 #include <Vec3.h>
 #include <Wire.h>
 

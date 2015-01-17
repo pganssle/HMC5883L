@@ -100,6 +100,62 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     return rv;
 }
 
+Vec3<float> HMC5883L::runPosTest(void) {
+    /** Runs the positive bias self-test
+
+    Sets the bias mode to `HMC_BIAS_POSITIVE`, makes a measurement, then returns the bias mode to
+    `HMC_BIAS_NONE` and returns the value of the measurement.
+
+    @return Returns the value of a positive-biased measurement. On error, returns (0, 0, 0) and
+            sets `err_code` to the error.
+    */
+
+    Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);
+
+    if (err_code = setBiasMode(HMC_BIAS_POSITIVE)) {
+        return zero_vec;
+    }
+
+    Vec3<float> rv = readScaledValues();
+    if (err_code) {
+        return zero_vec;
+    }
+
+    if (err_code = setBiasMode(HMC_BIAS_NONE)) {
+        return zero_vec;
+    }
+
+    return rv;
+}
+
+Vec3<float> HMC5883L::runNegTest(void) {
+    /** Runs the negative bias self-test
+
+    Sets the bias mode to `HMC_BIAS_NEGATIVE`, makes a measurement, then returns the bias mode to
+    `HMC_BIAS_NONE` and returns the value of the measurement.
+
+    @return Returns the value of a positive-biased measurement. On error, returns (0, 0, 0) and
+            sets `err_code` to the error.
+    */
+
+    Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);
+
+    if (err_code = setBiasMode(HMC_BIAS_NEGATIVE)) {
+        return zero_vec;
+    }
+
+    Vec3<float> rv = readScaledValues();
+    if (err_code) {
+        return zero_vec;
+    }
+
+    if (err_code = setBiasMode(HMC_BIAS_NONE)) {
+        return zero_vec;
+    }
+
+    return rv;
+}
+
 uint8_t HMC5883L::setGain(uint8_t gain_level) {
     /** Set the magnetometer gain value.
 
