@@ -17,6 +17,7 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 #include <Vec3.h>
 #include <Wire.h>
 
+// Device addresses
 #define HMC5883L_ADDR 0x1E
 
 #define ConfigRegisterA 0x00
@@ -25,6 +26,10 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 
 #define DataRegister 0x03
 #define StatusRegister 0x09
+
+// Bias fields in mG
+#define HMC_BIAS_XY 1160.0
+#define HMC_BIAS_Z 1080.0
 
 // Gain settings
 #define HMC_GAIN088 0
@@ -79,8 +84,7 @@ public:
     Vec3<float> readScaledValues(void);
     Vec3<float> readCalibratedValues(void);
 
-    Vec3<float> runCalibration(void);
-    Vec3<float> getCalibration(void);
+    Vec3<float> getCalibration(bool update);
 
     Vec3<float> runPosTest(void);
     Vec3<float> runNegTest(void);
@@ -93,6 +97,7 @@ public:
     uint8_t setOutputRate(uint8_t out_rate);
     uint8_t setMeasurementMode(uint8_t mode);
     uint8_t setBiasMode(uint8_t mode);
+    uint8_t setHighSpeedI2CMode(bool enabled);
 
     uint8_t getGain(bool updateCache=false);
     uint8_t getAveragingRate(bool updateCache=false);

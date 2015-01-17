@@ -13,6 +13,12 @@ template<typename T> class Vec3 {
     */
     T x, y, z;
 
+    Vec3<T>(T X, T Y, T Z) {
+        x = X;
+        y = Y;
+        z = Z;
+    }
+
     // Vec3-Vec3 operations
     Vec3<T> operator+(Vec3<T> v) {
         return Vec3<T>(x + v.x,

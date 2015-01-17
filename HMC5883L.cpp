@@ -47,6 +47,9 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     // Start communication with the device.
     I2CDevice.start();
 
+    // Initialize the calibration to (1.0, 1.0, 1.0)
+    calibration = Vec3<float>(1.0, 1.0, 1.0);
+
     uint8_t rv;
     if (!noConfig) {
         // Setup the configuration,.
@@ -100,6 +103,41 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     return rv;
 }
 
+Vec3<float> HMC5883L::getCalibration(bool update) {
+    /** Runs a positive and negative bias test and sets the calibration from the average
+
+    Runs `runPosTest()`, then `runNegTest()` and averages the values, and sets the calibration.
+
+    @param[in] update If evaluates to true, run the calibration and update the cache. Otherwise
+                      just returns the cached value.
+
+    @return Returns the new calibration value. On error, returns (0, 0, 0) and sets `err_code` to
+            the error.
+    */
+
+    if (update) {
+        Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);      // Returned on error
+
+        Vec3<float> pos_test = runPosTest();
+        if (err_code) {
+            return zero_vec;
+        }
+
+        Vec3<float> neg_test = runNegTest();
+        if (err_code) {
+            return zero_vec;
+        }
+
+        // Update the calibration
+        calibration = (pos_test+neg_test)/2.0;
+        calibration.x /= HMC_BIAS_XY;
+        calibration.y /= HMC_BIAS_XY;
+        calibration.z /= HMC_BIAS_Z;
+    }
+
+    return calibration;
+}
+
 Vec3<float> HMC5883L::runPosTest(void) {
     /** Runs the positive bias self-test
 
@@ -110,7 +148,7 @@ Vec3<float> HMC5883L::runPosTest(void) {
             sets `err_code` to the error.
     */
 
-    Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);
+    Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);      // Returned on error
 
     if (err_code = setBiasMode(HMC_BIAS_POSITIVE)) {
         return zero_vec;
@@ -134,7 +172,7 @@ Vec3<float> HMC5883L::runNegTest(void) {
     Sets the bias mode to `HMC_BIAS_NEGATIVE`, makes a measurement, then returns the bias mode to
     `HMC_BIAS_NONE` and returns the value of the measurement.
 
-    @return Returns the value of a positive-biased measurement. On error, returns (0, 0, 0) and
+    @return Returns the value of a negative-biased measurement. On error, returns (0, 0, 0) and
             sets `err_code` to the error.
     */
 
@@ -358,6 +396,26 @@ uint8_t HMC5883L::setBiasMode(uint8_t mode) {
     // Update cache
     biasMode = mode;
     return 0;
+}
+
+uint8_t HMC5883L::setHighSpeedI2CMode(bool enabled) {
+    /** Enable or disable High Speed I2C (3400 kHz)
+
+    @return Returns `0` on no error. returns I2C errors from calls to `I2CDev.read_data()` and
+            `I2CDev.write_data()`. 
+    */
+
+    // Get the configuration register and mask out bit 7
+    uint8_t modeRegister = I2CDevice.read_data_byte(ModeRegister) & 0x80;
+
+    if (err_code = I2CDevice.get_err_code) {
+        return err_code;
+    }
+
+    // Update the register value
+    err_code = I2CDevice.write_data(ModeRegister, modeRegister & (enabled?0x80:0x00)));
+
+    return err_code;
 }
 
 uint8_t HMC5883L::getGain(bool updateCache=false) {
