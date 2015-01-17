@@ -134,7 +134,7 @@ uint8_t HMC5883L::setGain(uint8_t gain_level) {
     uint8_t rv = 0;
 
     // Write the data to the configuration register. On failure, return error code.
-    if(rv = I2CDevice.write_data(HMC5883L_ADDR, ConfigRegisterB, gain_level << 5)) { return rv; }
+    if(rv = I2CDevice.write_data(ConfigRegisterB, gain_level << 5)) { return rv; }
 
     // Update gain value cache.
     gain = gain_level;
@@ -168,52 +168,262 @@ uint8_t HMC5883L::setAveragingRate(uint8_t avg_rate) {
     }
 
     // Get the configuration register value, then mask out bits 5 and 6.
-    uint8_t configRegister = I2CDevice.read_data_byte(HMC5883L_ADDR, ConfigRegisterA);
-
-    // Return error code on error.
+    uint8_t configRegister = I2CDevice.read_data_byte(ConfigRegisterA) & 0x9f;
     if (err_code = I2CDevice.get_error_code()) { 
         return err_code; 
     }
 
-    configRegister &= 0x9f;         // Mask out bits 5 and 6.
-
     // Update register value.
-    if (err_code = I2CDevice.write_data(ConfigRegisterA, avg_rate << 5 | configRegister)) {
+    if (err_code = I2CDevice.write_data(ConfigRegisterA, (avg_rate << 5) | configRegister)) {
         return err_code;
     }
 
+    // Update cache
     averagingRate = avg_rate;
     return 0;
 }
 
 uint8_t HMC5883L::setOutputRate(uint8_t out_rate) {
+    /** Sets the data output rate in continuous output mode.
+    
+    Data output rate in continuous mode. Value is set in bits 2-4 of configuration register A.
 
+    @param[in] out_rate The data output rate. Valid values are 0-6:
+    
+    | `out_rate`     | Value | Rate (Hz) |
+    | :------------- | :---: | :-------: |
+    | `HMC_RATE0075` |   0   |    0.75   |
+    | `HMC_RATE0150` |   1   |    1.50   |
+    | `HMC_RATE0300` |   2   |    3.00   |
+    | `HMC_RATE0750` |   3   |    7.50   |
+    | `HMC_RATE1500` |   4   |   15.00   |
+    | `HMC_RATE3000` |   5   |   30.00   |
+    | `HMC_RATE7500` |   6   |   75.00   |
+
+    @return Returns `0` on no error. Returns I2C errors from calls to `I2CDev.read_data()` and
+            `I2CDev.write_data()`, as well as:
+            - \c `EC_INVALID_OUTRATE` Returned if the output rate is out of range.
+    */
+
+    // Validate input
+    if (out_rate > 6) {
+        return EC_INVALID_OUTRATE;
+    }
+
+    // Get the configuration register value, then mask out bits 2-4.
+    uint8_t configRegister = I2CDevice.read_data_byte(ConfigRegisterA) & 0xe3;
+    if (err_code = I2CDevice.get_error_code()) {
+        return err_code;
+    }
+
+    // Update register value
+    if (err_code = I2CDevice.write_data(ConfigRegisterA, (out_rate << 2) | configRegister)) {
+        return err_code;
+    }
+
+    // Update cache
+    outputRate = out_rate;
+    return 0;
 }
 
 uint8_t HMC5883L::setMeasurementMode(uint8_t mode) {
+    /** Sets the measurement mode (Continuous, Single or Idle).
+    
+    Measurement mode is the first two bits of the mode register. In continuous mode, data is output
+    at the rate set by `setOutputRate`. In single measurement mode, a single measurement
+    is made, the RDY pin is set high and mode is returned to idle. In single measurement mode,
+    the approximate maximum data rate is 160 Hz. Idle is self-explanatory.
 
+    @param[in] mode The measurement mode, `HMC_MeasurementContinuous` [0], 
+                    `HMC_MeasurementSingle` [1], `HMC_MeasurementIdle` [2].
+    
+    @return Returns `0` on no error. Returns I2C errors from calls to `I2CDev.read_data()` and
+            `I2CDev.write_data()`, as well as:
+            - \c `EC_INVALID_MEASUREMENT_MODE` Returned if the measurement mode is out of range. 
+    */
+
+    if (mode > 2) {
+        return EC_INVALID_MEASUREMENT_MODE;
+    }
+
+    // Get the configuration register, then mask out all but bit 7 (HS0 register)
+    uint8_t modeRegister = I2CDevice.read_data_byte(ModeRegister) & 0x80;
+    if (err_code = I2CDevice.get_error_code()) {
+        return err_code;
+    }
+
+    // Update register value
+    if (err_code = I2CDevice.write_data(ModeRegister, mode | modeRegister)) {
+        return err_code;
+    }
+
+    // Update cache
+    measurementMode = mode;
+    return 0;
 }
 
 uint8_t HMC5883L::setBiasMode(uint8_t mode) {
+    /** Sets the measurement bias mode (negative, positive or none).
 
+    The HMC5883L has a self-test mode which applies either a negative or positive bias field along
+    all three channels; the mode is set in the bottom two bits of the Configuration Register A.
+    The applied bias fields along all three axes are:
+
+    | Axis | Bias-on field (mG) |
+    | :--: | :----------------- |
+    |   X  |  ±1160             |
+    |   Y  |  ±1160             |
+    |   Z  |  ±1080             |
+
+    In the negative and positive bias modes, each "measurement" consists of two measurements, a
+    measurement with the bias field applied and one without, and the device returns the difference.
+
+    @param[in] mode Valid bias modes are `HMC_BIAS_NONE` [0], `HMC_BIAS_POSITIVE` [1] and
+                    `HMC_BIAS_NEGATIVE` [2].
+
+    @return Returns `0` on no error. Returns I2C errors from calls to `I2CDev.read_data()` and
+            `I2CDev.write_data()`
+    */
+    if (mode > 2) {
+        return EC_INVALID_BIAS_MODE;
+    }
+
+    // Get the configuration register, then mask out the bottom two bits.
+    uint8_t configRegister = I2CDevice.read_data_byte(ConfigRegisterA) & 0xfc;
+    if (err_code = I2CDevice.get_err_code()) {
+        return err_code;
+    }
+
+    // Update the register value
+    if (err_code = I2CDevice.write_data(ConfigRegisterA, mode | configRegister)) {
+        return err_code;
+    }
+
+    // Update cache
+    biasMode = mode;
+    return 0;
 }
 
 uint8_t HMC5883L::getGain(bool updateCache=false) {
+    /** Retrieve the gain value
 
+    Retrieves the gain value level that was set from `setGain()`.
+
+    @param[in] updateCache Boolean value, default `false`. If it evaluates as true, the gain level
+                           is retrieved from the device and cached in a private variable. Otherwise
+                           the value is retrieved from the cache.
+
+    @return Returns `0` on no error. Returns I2C errors from call to `I2CDev.read_data()` if
+            `updateCache` is `true`. Otherwise no errors are returned.
+    */
+    if (updateCache) {
+        uint8_t regValue = I2CDevice.read_data_byte(ConfigRegisterB);
+        if (err_code = I2CDevice.get_err_code()) {
+            return err_code;
+        }
+
+        gain = regValue >> 5;
+    }
+
+    return gain;
 }
 
 uint8_t HMC5883L::getAveragingRate(bool updateCache=false) {
+    /** Retrieve the averaging rate
 
+    Retrieves the averaging rate that was set from `setAveragingRate()`.
+
+    @param[in] updateCache Boolean value, default `false`. If it evaluates as true, the gain level
+                           is retrieved from the device and cached in a private variable. Otherwise
+                           the value is retrieved from the cache.
+
+    @return Returns `0` on no error. Returns I2C errors from call to `I2CDev.read_data()` if
+            `updateCache` is `true`. Otherwise no errors are returned.
+    */
+
+    if (updateCache) {
+        uint8_t regValue = I2CDevice.read_data_byte(ConfigRegisterA);
+        if (err_code = I2CDevice.get_err_code()) {
+            return err_code;
+        }
+
+        regValue &= 0x60;       // Mask out all but bits 5 & 6
+        averagingRate = regValue >> 5;
+    }
+
+    return averagingRate;
 }
 
 uint8_t HMC5883L::getOutputRate(bool updateCache=false) {
+    /** Retrieve the data output rate in Continuous mode
 
+    Retrieves the data output rate that was set from `setOutputRate()`.
+
+    @param[in] updateCache Boolean value, default `false`. If it evaluates as true, the gain level
+                           is retrieved from the device and cached in a private variable. Otherwise
+                           the value is retrieved from the cache.
+
+    @return Returns `0` on no error. Returns I2C errors from call to `I2CDev.read_data()` if
+            `updateCache` is `true`. Otherwise no errors are returned.
+    */
+
+    if (updateCache) {
+        uint8_t regValue = I2CDevice.read_data_byte(ConfigRegisterA);
+        if (err_code = I2CDevice.get_err_code()) {
+            returne rr_code;
+        }
+
+        regValue &= 0x1c;               // Mask out everything but bits 2-4.
+        outputRate = regValue >> 2;
+    }
+
+    return outputRate;
 }
 
 uint8_t HMC5883L::getMeasurementMode(bool updateCache=false) {
+    /** Retrieve the device's measurement mode
+    
+    Retrieves the measurement mode that was set from `setMeasurementMode()`. If the cached mode is
+    `HMC_MeasurementSingle`, the cache is always updated, irrespective of the value of
+    `updateCache`, since the mode is set to `HMC_MeasurementIdle` when data is ready.
 
+    @param[in] updateCache Boolean value, default `false`. If it evaluates as true, the gain level
+                           is retrieved from the device and cached in a private variable. Otherwise
+                           the value is retrieved from the cache.
+
+    @return Returns `0` on no error. Returns I2C errors from call to `I2CDev.read_data()` if
+            `updateCache` is `true`. Otherwise no errors are returned.
+    */
+
+    if (updateCache || measurementMode == HMC_MeasurementSingle) {
+        uint8_t regValue = I2CDevice.read_data_byte(ModeRegister);
+
+        regValue &= 0x3;                // Mask out all but bits 0-1.
+        measurementMode = regValue;
+    }
+
+    return measurementMode;
 }
 
 uint8_t HMC5883L::getBiasMode(bool updateCache=false) {
+    /** Retrieve the bias mode setting from the device
 
+    Retrieves the bias mode that was set from `setBiasMode()`.
+
+    @param[in] updateCache Boolean value, default `false`. If it evaluates as true, the gain level
+                           is retrieved from the device and cached in a private variable. Otherwise
+                           the value is retrieved from the cache.
+
+    @return Returns `0` on no error. Returns I2C errors from call to `I2CDev.read_data()` if
+            `updateCache` is `true`. Otherwise no errors are returned.
+    */
+
+    if (updateCache) {
+        uint8_t regValue = I2CDevice.read_data_byte(ConfigRegisterA);
+
+        regValue &= 0x3;
+        biasMode = regValue;
+    }
+
+    return biasMode;
 }

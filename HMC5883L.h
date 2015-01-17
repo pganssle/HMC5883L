@@ -56,6 +56,19 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 #define HMC_MeasurementSingle 1
 #define HMC_MeasurementIdle 2
 
+// Bias modes
+#define HMC_BIAS_NONE 0
+#define HMC_BIAS_POSITIVE 1
+#define HMC_BIAS_NEGATIVE 2
+
+// Error codes
+#define EC_BAD_GAIN_LEVEL 8
+#define EC_INVALID_NAVG 9
+#define EC_INVALID_OUTRATE 10
+#define EC_INVALID_MEASUREMENT_MODE 11
+#define EC_INVALID_BIAS_MODE 12
+
+
 class HMC5883L {
 public:
     HMC5883L();

@@ -1,6 +1,9 @@
 /** @file
 Library for reading and writing to and from registers on I2C devices.
 
+This code is released under a Creative Commons Attribution 4.0 International license 
+([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+
 @author Paul J. Ganssle
 @version 0.1
 @date 2015-01-14
