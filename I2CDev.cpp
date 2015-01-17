@@ -7,9 +7,22 @@ Library for reading and writing to and from registers on I2C devices.
 */
 
 #include <Wire.h>
-#include <I2Ccomm.h>
+#include <I2CDev.h>
 
-uint8_t write_data(uint8_t dev_addr, uint8_t register_addr, uint8_t data) {
+I2CDev::I2CDev(uint8_t address) {
+    /** I2C device class constructor
+
+    */
+    dev_addr = address;
+}
+
+void I2CDev::start() {
+    /** Start I2C communication with the specified device. Alias for `Wire.begin()`. */
+
+    Wire.begin();
+}
+
+uint8_t I2CDev::write_data(uint8_t register_addr, uint8_t data) {
     /** Writes data to the specified register address.
 
     This is a private function, called by specific-use functions such as `write_RDAC()` and 
@@ -34,7 +47,7 @@ uint8_t write_data(uint8_t dev_addr, uint8_t register_addr, uint8_t data) {
     return err_code;
 }
 
-uint8_t read_data(uint8_t dev_addr, uint8_t register_addr, uint8_t length) {
+uint8_t I2CDev::read_data(uint8_t register_addr, uint8_t length) {
     /** Reads data of length `length` from register  `register_addr`
     
     This is a private function, called by specific-use functions such as `read_RDAC()` and 
@@ -87,7 +100,7 @@ uint8_t read_data(uint8_t dev_addr, uint8_t register_addr, uint8_t length) {
     return buff;
 }
 
-uint8_t read_data_byte(uint8_t dev_addr, register_addr) {
+uint8_t I2CDev::read_data_byte(uint8_t register_addr) {
     /** Reads a single byte from the specified register. Convenience wrapper for `read_data()`.
 
     This reads a single byte from the register specified at `register_addr` via a call to
@@ -108,4 +121,15 @@ uint8_t read_data_byte(uint8_t dev_addr, register_addr) {
 
     return rv[0];
 }
+
+uint8_t I2CDev::get_err_code() {
+    /** Retrieve the error code stored on the I2C device.
+    
+    Retrieves the error code stored in `err_code` variable. If non-zero, use `I2CGetErrorString()`
+    from `I2CErrorStrings.h` to retrieve the human-readable error string, or see `I2CDev.h` for
+    details.
+
+    @return Returns the error code set in the current object. Non-zero value is an error.
+    */
+    return err_code;
 }

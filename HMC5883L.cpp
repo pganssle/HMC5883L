@@ -10,7 +10,13 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 */
 
 #include <HMC5883L.h>
+#include <I2CDev.h>
 #include <Arduino.h>
+
+HMC5883L::HMC5883L() {
+    /**  Constructor for HMC5883L compass / magnetometer class. */
+    I2CDevice = I2CDev(HMC5883L_ADDR);
+}
 
 uint8_t HMC5883L::initialize(bool noConfig=false) {
     /** Initialize the magnetometer communications.
@@ -39,7 +45,7 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     */
 
     // Start communication with the device.
-    Wire.begin();
+    I2CDevice.start();
 
     uint8_t rv;
     if (!noConfig) {
@@ -104,19 +110,19 @@ uint8_t HMC5883L::setGain(uint8_t gain_level) {
     @param[in] gain_level The gain setting, the values for which can be found in the following
                           table:
 
-    | `gain_level`  | `value` | Gain (LSB/G) | Range (G) | Resolution (mG / LSB) |
-    | :------------ | :-----: | :----------: | :-------: | :-------------------: |
-    | `HMC_GAIN088` |    0    |    1370      |   ±0.88   |        0.73           |
-    | `HMC_GAIN130` |    1    |    1090      |   ±1.30   |        0.92           |
-    | `HMC_GAIN190` |    2    |     820      |   ±1.90   |        1.22           |
-    | `HMC_GAIN250` |    3    |     660      |   ±2.50   |        1.52           |
-    | `HMC_GAIN400` |    4    |     440      |   ±4.00   |        2.27           |
-    | `HMC_GAIN470` |    5    |     390      |   ±4.70   |        2.56           |
-    | `HMC_GAIN560` |    6    |     330      |   ±5.60   |        3.03           |
-    | `HMC_GAIN810` |    7    |     230      |   ±8.10   |        4.35           |
+    | `gain_level`  | Value  | Gain (LSB/G) | Range (G) | Resolution (mG / LSB) |
+    | :------------ | :----: | :----------: | :-------: | :-------------------: |
+    | `HMC_GAIN088` |    0   |    1370      |   ±0.88   |        0.73           |
+    | `HMC_GAIN130` |    1   |    1090      |   ±1.30   |        0.92           |
+    | `HMC_GAIN190` |    2   |     820      |   ±1.90   |        1.22           |
+    | `HMC_GAIN250` |    3   |     660      |   ±2.50   |        1.52           |
+    | `HMC_GAIN400` |    4   |     440      |   ±4.00   |        2.27           |
+    | `HMC_GAIN470` |    5   |     390      |   ±4.70   |        2.56           |
+    | `HMC_GAIN560` |    6   |     330      |   ±5.60   |        3.03           |
+    | `HMC_GAIN810` |    7   |     230      |   ±8.10   |        4.35           |
 
     @return Returns `0` on no error. Otherwise returns error code. Returns I2C errors from calls to
-            `read_data()` and `write_data()`, as well as:
+            `write_data()`, as well as:
             - \c `EC_BAD_GAIN_LEVEL` Returned if input gain level is out of range.
     */
 
@@ -128,7 +134,7 @@ uint8_t HMC5883L::setGain(uint8_t gain_level) {
     uint8_t rv = 0;
 
     // Write the data to the configuration register. On failure, return error code.
-    if(rv = write_data(HMC5883L_ADDR, ConfigRegisterB, gain_level << 5)) { return rv; }
+    if(rv = I2CDevice.write_data(HMC5883L_ADDR, ConfigRegisterB, gain_level << 5)) { return rv; }
 
     // Update gain value cache.
     gain = gain_level;
@@ -137,7 +143,47 @@ uint8_t HMC5883L::setGain(uint8_t gain_level) {
 }
 
 uint8_t HMC5883L::setAveragingRate(uint8_t avg_rate) {
+    /** Set the magnetometer averaging rate.
 
+    This is the number of averages composing each measurement. It sets bits 5 and 6 on
+    Configuration Register A on the device.
+
+    @param[in] avg_rate The averaging rate. The number of averages per measurement is 1<<avg_rate.
+
+    | `avg_rate` | Value | Rate |
+    | :--------- | :---: | :--: |
+    | `HMC_AVG1` |   0   |  1   |
+    | `HMC_AVG2` |   1   |  2   |
+    | `HMC_AVG4` |   2   |  4   |
+    | `HMC_AVG8` |   3   |  8   |
+
+    @return Returns `0` on no error. Otherwise returns error code. Returns I2C errors from calls to
+            `read_data()` and `write_data()`, as well as:
+            - \c `EC_INVALID_NAVG` Returned if the number of averages is out of range.
+    */
+    
+    // Validate input
+    if (avg_rate > 3) {
+        return EC_INVALID_NAVG;
+    }
+
+    // Get the configuration register value, then mask out bits 5 and 6.
+    uint8_t configRegister = I2CDevice.read_data_byte(HMC5883L_ADDR, ConfigRegisterA);
+
+    // Return error code on error.
+    if (err_code = I2CDevice.get_error_code()) { 
+        return err_code; 
+    }
+
+    configRegister &= 0x9f;         // Mask out bits 5 and 6.
+
+    // Update register value.
+    if (err_code = I2CDevice.write_data(ConfigRegisterA, avg_rate << 5 | configRegister)) {
+        return err_code;
+    }
+
+    averagingRate = avg_rate;
+    return 0;
 }
 
 uint8_t HMC5883L::setOutputRate(uint8_t out_rate) {

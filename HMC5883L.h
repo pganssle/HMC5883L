@@ -72,6 +72,9 @@ public:
     Vec3<float> runPosTest(void);
     Vec3<float> runNegTest(void);
 
+    bool isReady(void);
+    uint8_t waitUntilReady(unsigned long delay_interval=0);
+
     uint8_t setGain(uint8_t gain_level);
     uint8_t setAveragingRate(uint8_t avg_rate);
     uint8_t setOutputRate(uint8_t out_rate);
@@ -84,14 +87,17 @@ public:
     uint8_t getMeasurementMode(bool updateCache=false);
     uint8_t getBiasMode(bool updateCache=false);
 
+    uint8_t get_error_code(void);
+
 private:
+    I2CDev I2CDevice;
+    Vec3<float> calibration;
+
     uint8_t gain;
     uint8_t averagingRate;
     uint8_t outputRate;
     uint8_t measurementMode;
     uint8_t biasMode;
-
-    Vec3<float> calibration;
 };
 
 #endif
