@@ -11,7 +11,6 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 
 #include <HMC5883L.h>
 #include <I2CDev.h>
-#include <Arduino.h>
 
 HMC5883L::HMC5883L() {
     /**  Constructor for HMC5883L compass / magnetometer class. */
@@ -121,7 +120,7 @@ Vec3<int> HMC5883L::readRawValues(uint8_t &saturated) {
     // Read the data from all three axes (two's complement)
     uint8_t *regValue = I2CDevice.read_data(DataRegister, 6);
 
-    if (err_code = I2CDevice.get_error_code()) {
+    if (err_code = I2CDevice.get_err_code()) {
         return Vec3<int>(0, 0, 0);
     }
     int16_t x = regValue[0] << 8 | regValue[1];     // First two bytes are x.
@@ -259,14 +258,26 @@ Vec3<float> HMC5883L::runNegTest(void) {
     return rv;
 }
 
-bool isReady(void) {
-    /**
+uint8_t  HMC5883L::getStatus(bool &isLocked, bool &isReady) {
+    /** Read the status register
+    
+    @param[out] isLocked Whether or not the status LOCK bit is set.
+    @param[out] isReady Whether or not the status RDY bit is set
+    
+    @return Returns the value of the status register, or a value >= 4 on error (no valid status
+            register values are > 3). On error, `err_code` is also set.
     */
-}
+    
+    // Read the status register and mask out the bottom two bits.
+    uint8_t regValue = I2CDevice.read_data_byte(StatusRegister) & 0x3;
+    if (err_code = I2CDevice.get_err_code()) {
+        return 4;
+    }
 
-uint8_t waitUntilReady(unsigned long delay_interval=0) {
-    /**
-    */
+    // Return the individual bits
+    *isLocked = regValue & 0b10;        // Lock bit
+    *isReady = regValue & 0b01;         // Ready bit
+    return regValue;
 }
 
 uint8_t HMC5883L::setGain(uint8_t gain_level) {
@@ -338,7 +349,7 @@ uint8_t HMC5883L::setAveragingRate(uint8_t avg_rate) {
 
     // Get the configuration register value, then mask out bits 5 and 6.
     uint8_t configRegister = I2CDevice.read_data_byte(ConfigRegisterA) & 0x9f;
-    if (err_code = I2CDevice.get_error_code()) { 
+    if (err_code = I2CDevice.get_err_code()) { 
         return err_code; 
     }
 
@@ -381,7 +392,7 @@ uint8_t HMC5883L::setOutputRate(uint8_t out_rate) {
 
     // Get the configuration register value, then mask out bits 2-4.
     uint8_t configRegister = I2CDevice.read_data_byte(ConfigRegisterA) & 0xe3;
-    if (err_code = I2CDevice.get_error_code()) {
+    if (err_code = I2CDevice.get_err_code()) {
         return err_code;
     }
 
@@ -417,7 +428,7 @@ uint8_t HMC5883L::setMeasurementMode(uint8_t mode) {
 
     // Get the configuration register, then mask out all but bit 7 (HS0 register)
     uint8_t modeRegister = I2CDevice.read_data_byte(ModeRegister) & 0x80;
-    if (err_code = I2CDevice.get_error_code()) {
+    if (err_code = I2CDevice.get_err_code()) {
         return err_code;
     }
 
@@ -483,7 +494,7 @@ uint8_t HMC5883L::setHighSpeedI2CMode(bool enabled) {
     // Get the configuration register and mask out bit 7
     uint8_t modeRegister = I2CDevice.read_data_byte(ModeRegister) & 0x80;
 
-    if (err_code = I2CDevice.get_err_code) {
+    if (err_code = I2CDevice.get_err_code()) {
         return err_code;
     }
 

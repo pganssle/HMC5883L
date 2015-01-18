@@ -94,8 +94,7 @@ public:
     Vec3<float> runPosTest(void);
     Vec3<float> runNegTest(void);
 
-    bool isReady(void);
-    uint8_t waitUntilReady(unsigned long delay_interval=0);
+    uint8_t getStatus(bool &isLocked, bool &isReady);
 
     uint8_t setGain(uint8_t gain_level);
     uint8_t setAveragingRate(uint8_t avg_rate);
@@ -112,6 +111,9 @@ public:
 
     uint8_t get_error_code(void);
 
+    static const float outputRates[7] = [0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00];
+    static const float gainRanges[8] = [0.88, 1.30, 1.90, 2.50, 4.00, 4.70, 5.60, 8.10];
+    
 private:
     I2CDev I2CDevice;
     Vec3<float> calibration;
