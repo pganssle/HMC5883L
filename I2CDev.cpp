@@ -50,7 +50,7 @@ uint8_t I2CDev::write_data(uint8_t register_addr, uint8_t data) {
     return err_code;
 }
 
-uint8_t I2CDev::read_data(uint8_t register_addr, uint8_t length) {
+uint8_t *I2CDev::read_data(uint8_t register_addr, uint8_t length) {
     /** Reads data of length `length` from register  `register_addr`
     
     This is a private function, called by specific-use functions such as `read_RDAC()` and 

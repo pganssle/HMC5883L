@@ -73,6 +73,11 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 #define EC_INVALID_MEASUREMENT_MODE 11
 #define EC_INVALID_BIAS_MODE 12
 
+// Warning codes
+#define WC_X_SATURATED 1
+#define WC_Y_SATURATED 2
+#define WC_Z_SATURATED 4
+
 
 class HMC5883L {
 public:
@@ -116,6 +121,8 @@ private:
     uint8_t outputRate;
     uint8_t measurementMode;
     uint8_t biasMode;
+
+    static const float gainValues[8] = [0.73, 0.92, 1.22, 1.52, 2.27, 2.56, 3.03, 4.35];
 };
 
 #endif

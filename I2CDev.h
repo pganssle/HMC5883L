@@ -23,9 +23,9 @@ public:
 
     uint8_t start(void);
 
-    uint8_t write_data(uint8_t dev_addr, uint8_t register_addr, uint8_t data);
-    uint8_t read_data(uint8_t dev_addr, uint8_t register_addr, uint8_t length);
-    uint8_t read_data_byte(uint8_t dev_addr, uint8_t register_addr, uint8_t data);
+    uint8_t write_data(uint8_t register_addr, uint8_t data);
+    uint8_t *read_data(uint8_t register_addr, uint8_t length);
+    uint8_t read_data_byte(uint8_t register_addr, uint8_t data);
 
     uint8_t get_err_code(void);
 private:

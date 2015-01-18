@@ -103,6 +103,71 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     return rv;
 }
 
+Vec3<int> HMC5883L::readRawValues(uint8_t &saturated) {
+    /** Read the raw values from the device
+    
+    Values on the HMC5883L are stored in the 6 data registers, in two's complement form, with
+    each axis stored as two 8-bit integers (big-endian). This reads the raw integer values from
+    the registers. For data under- and overflows, the registers are set to -4096 - this is detected
+    and indicated with the output parameter `saturated`.
+
+    @param[out] saturated A warning code with flags `WC_X_SATURATED`, `WC_Y_SATURATED` and
+                          `WC_Z_SATURATED` indicating whether or not any of the channels has data
+                          under- or overflow.
+
+    @return Returns an integer 3-vector (x, y, z), or (0, 0, 0) on 
+    */
+    
+    // Read the data from all three axes (two's complement)
+    uint8_t *regValue = I2CDevice.read_data(DataRegister, 6);
+
+    if (err_code = I2CDevice.get_error_code()) {
+        return Vec3<int>(0, 0, 0);
+    }
+    int16_t x = regValue[0] << 8 | regValue[1];     // First two bytes are x.
+    int16_t y = regValue[4] << 8 | regValue[5];     // Bytes 4 and 5 are y.
+    int16_t z = regValue[2] << 8 | regValue[3];     // Bytes 2 and 3 are z.
+
+    // Set the appropriate warning flags if the sensor is saturated.
+    if (saturated != NULL) {
+        *saturated = 0;
+        if (x == -4096) { *saturated |= WC_X_SATURATED; }
+        if (y == -4096) { *saturated |= WC_Y_SATURATED; }
+        if (z == -4096) { *saturated |= WC_Z_SATURATED; }
+    }
+
+    return Vec3<int>(x, y, z);
+}
+
+Vec3<float>  HMC5883L::readScaledValues(uint8_t &saturated) {
+    /** Read the field vector and return the value in milliGauss.
+
+    Scales the integers returned by `readRawValues()` by the appropriate gain value determined by
+    the value set by `setGain()`.
+    */
+
+    Vec3<int> rawValues = readRawValues(saturated);
+
+    if (err_code) {
+        return Vec3<float>(0.0, 0.0, 0.0);
+    }
+
+    Vec3<float> rv = Vec3<float>(rawValues.x, rawValues.y, rawValues.z);
+
+    return rv * gainValues[gain];
+}
+
+Vec3<float> HMC5883L::readCalibratedValues(uint8_t &saturated) {
+    /** Return the field vector, scaled by the calibration, and return the value in milliGauss.
+    
+    */
+
+    Vec3<float> scaledValues = readScaledValues(saturated);
+
+    // No need to check for error code - scaledValues returns a zero vector on error anyway.
+    return scaledValues * calibration;
+}
+
 Vec3<float> HMC5883L::getCalibration(bool update) {
     /** Runs a positive and negative bias test and sets the calibration from the average
 
@@ -192,6 +257,16 @@ Vec3<float> HMC5883L::runNegTest(void) {
     }
 
     return rv;
+}
+
+bool isReady(void) {
+    /**
+    */
+}
+
+uint8_t waitUntilReady(unsigned long delay_interval=0) {
+    /**
+    */
 }
 
 uint8_t HMC5883L::setGain(uint8_t gain_level) {
