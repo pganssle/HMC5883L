@@ -116,7 +116,7 @@ uint8_t I2CDev::read_data_byte(uint8_t register_addr) {
     it raises only the errors raised by that function.
     */
 
-    uint8_t *rv = read_data(dev_addr, register_addr, 1);
+    uint8_t *rv = read_data(register_addr, 1);
 
     if(rv == NULL) {
         return 0;       // Err code set in read_data already.

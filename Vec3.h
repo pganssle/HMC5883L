@@ -2,7 +2,10 @@
 Definition for template class Vec3, which holds 3D Cartesian vectors.
 */
 
-template<typename T> class Vec3 {
+#ifndef VEC3_H
+#define VEC3_H
+
+template<typename T> struct Vec3 {
     /** Class for holding Cartesian 3-vectors.
 
     This is a class for holding Cartesian 3-vectors of values with type T (assumed to be numeric
@@ -13,7 +16,8 @@ template<typename T> class Vec3 {
     */
     T x, y, z;
 
-    Vec3<T>(T X, T Y, T Z) {
+    Vec3() {}
+    Vec3(T X, T Y, T Z) {
         x = X;
         y = Y;
         z = Z;
@@ -94,3 +98,5 @@ template<typename T> class Vec3 {
                        z / c);
     }
 };
+
+#endif

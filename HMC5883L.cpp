@@ -11,13 +11,18 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 
 #include <HMC5883L.h>
 #include <I2CDev.h>
+#include <Vec3.h>
 
 HMC5883L::HMC5883L() {
     /**  Constructor for HMC5883L compass / magnetometer class. */
     I2CDevice = I2CDev(HMC5883L_ADDR);
 }
 
-uint8_t HMC5883L::initialize(bool noConfig=false) {
+const float HMC5883L::outputRates[] = {0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00};
+const float HMC5883L::gainRanges[] = {0.88, 1.30, 1.90, 2.50, 4.00, 4.70, 5.60, 8.10};
+const float HMC5883L::gainValues[] = {0.73, 0.92, 1.22, 1.52, 2.27, 2.56, 3.03, 4.35};
+
+uint8_t HMC5883L::initialize(bool noConfig) {
     /** Initialize the magnetometer communications.
 
     Starts I2C communication with the HMC5883L magnetometer. This creates the Wire interface
@@ -102,7 +107,7 @@ uint8_t HMC5883L::initialize(bool noConfig=false) {
     return rv;
 }
 
-Vec3<int> HMC5883L::readRawValues(uint8_t &saturated) {
+Vec3<int> HMC5883L::readRawValues(uint8_t *saturated) {
     /** Read the raw values from the device
     
     Values on the HMC5883L are stored in the 6 data registers, in two's complement form, with
@@ -138,7 +143,7 @@ Vec3<int> HMC5883L::readRawValues(uint8_t &saturated) {
     return Vec3<int>(x, y, z);
 }
 
-Vec3<float>  HMC5883L::readScaledValues(uint8_t &saturated) {
+Vec3<float>  HMC5883L::readScaledValues(uint8_t *saturated) {
     /** Read the field vector and return the value in milliGauss.
 
     Scales the integers returned by `readRawValues()` by the appropriate gain value determined by
@@ -156,7 +161,7 @@ Vec3<float>  HMC5883L::readScaledValues(uint8_t &saturated) {
     return rv * gainValues[gain];
 }
 
-Vec3<float> HMC5883L::readCalibratedValues(uint8_t &saturated) {
+Vec3<float> HMC5883L::readCalibratedValues(uint8_t *saturated) {
     /** Return the field vector, scaled by the calibration, and return the value in milliGauss.
     
     */
@@ -218,7 +223,7 @@ Vec3<float> HMC5883L::runPosTest(void) {
         return zero_vec;
     }
 
-    Vec3<float> rv = readScaledValues();
+    Vec3<float> rv = readScaledValues(NULL);
     if (err_code) {
         return zero_vec;
     }
@@ -246,7 +251,7 @@ Vec3<float> HMC5883L::runNegTest(void) {
         return zero_vec;
     }
 
-    Vec3<float> rv = readScaledValues();
+    Vec3<float> rv = readScaledValues(NULL);
     if (err_code) {
         return zero_vec;
     }
@@ -258,7 +263,7 @@ Vec3<float> HMC5883L::runNegTest(void) {
     return rv;
 }
 
-uint8_t  HMC5883L::getStatus(bool &isLocked, bool &isReady) {
+uint8_t  HMC5883L::getStatus(bool *isLocked, bool *isReady) {
     /** Read the status register
     
     @param[out] isLocked Whether or not the status LOCK bit is set.
@@ -499,12 +504,12 @@ uint8_t HMC5883L::setHighSpeedI2CMode(bool enabled) {
     }
 
     // Update the register value
-    err_code = I2CDevice.write_data(ModeRegister, modeRegister & (enabled?0x80:0x00)));
+    err_code = I2CDevice.write_data(ModeRegister, modeRegister & (enabled?0x80:0x00));
 
     return err_code;
 }
 
-uint8_t HMC5883L::getGain(bool updateCache=false) {
+uint8_t HMC5883L::getGain(bool updateCache) {
     /** Retrieve the gain value
 
     Retrieves the gain value level that was set from `setGain()`.
@@ -528,7 +533,7 @@ uint8_t HMC5883L::getGain(bool updateCache=false) {
     return gain;
 }
 
-uint8_t HMC5883L::getAveragingRate(bool updateCache=false) {
+uint8_t HMC5883L::getAveragingRate(bool updateCache) {
     /** Retrieve the averaging rate
 
     Retrieves the averaging rate that was set from `setAveragingRate()`.
@@ -554,7 +559,7 @@ uint8_t HMC5883L::getAveragingRate(bool updateCache=false) {
     return averagingRate;
 }
 
-uint8_t HMC5883L::getOutputRate(bool updateCache=false) {
+uint8_t HMC5883L::getOutputRate(bool updateCache) {
     /** Retrieve the data output rate in Continuous mode
 
     Retrieves the data output rate that was set from `setOutputRate()`.
@@ -570,7 +575,7 @@ uint8_t HMC5883L::getOutputRate(bool updateCache=false) {
     if (updateCache) {
         uint8_t regValue = I2CDevice.read_data_byte(ConfigRegisterA);
         if (err_code = I2CDevice.get_err_code()) {
-            returne rr_code;
+            return err_code;
         }
 
         regValue &= 0x1c;               // Mask out everything but bits 2-4.
@@ -580,7 +585,7 @@ uint8_t HMC5883L::getOutputRate(bool updateCache=false) {
     return outputRate;
 }
 
-uint8_t HMC5883L::getMeasurementMode(bool updateCache=false) {
+uint8_t HMC5883L::getMeasurementMode(bool updateCache) {
     /** Retrieve the device's measurement mode
     
     Retrieves the measurement mode that was set from `setMeasurementMode()`. If the cached mode is
@@ -605,7 +610,7 @@ uint8_t HMC5883L::getMeasurementMode(bool updateCache=false) {
     return measurementMode;
 }
 
-uint8_t HMC5883L::getBiasMode(bool updateCache=false) {
+uint8_t HMC5883L::getBiasMode(bool updateCache) {
     /** Retrieve the bias mode setting from the device
 
     Retrieves the bias mode that was set from `setBiasMode()`.

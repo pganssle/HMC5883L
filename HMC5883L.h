@@ -85,16 +85,16 @@ public:
 
     uint8_t initialize(bool noConfig=false);
 
-    Vec3<int> readRawValues(void);
-    Vec3<float> readScaledValues(void);
-    Vec3<float> readCalibratedValues(void);
+    Vec3<int> readRawValues(uint8_t *saturated);
+    Vec3<float> readScaledValues(uint8_t *saturated);
+    Vec3<float> readCalibratedValues(uint8_t *saturated);
 
     Vec3<float> getCalibration(bool update);
 
     Vec3<float> runPosTest(void);
     Vec3<float> runNegTest(void);
 
-    uint8_t getStatus(bool &isLocked, bool &isReady);
+    uint8_t getStatus(bool *isLocked, bool *isReady);
 
     uint8_t setGain(uint8_t gain_level);
     uint8_t setAveragingRate(uint8_t avg_rate);
@@ -111,9 +111,9 @@ public:
 
     uint8_t get_error_code(void);
 
-    static const float outputRates[7] = [0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00];
-    static const float gainRanges[8] = [0.88, 1.30, 1.90, 2.50, 4.00, 4.70, 5.60, 8.10];
-    
+    static const float outputRates[];
+    static const float gainRanges[];
+
 private:
     I2CDev I2CDevice;
     Vec3<float> calibration;
@@ -124,7 +124,9 @@ private:
     uint8_t measurementMode;
     uint8_t biasMode;
 
-    static const float gainValues[8] = [0.73, 0.92, 1.22, 1.52, 2.27, 2.56, 3.03, 4.35];
+    uint8_t err_code;
+
+    static const float gainValues[];
 };
 
 #endif
