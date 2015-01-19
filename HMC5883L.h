@@ -85,9 +85,9 @@ public:
 
     uint8_t initialize(bool noConfig=false);
 
-    Vec3<int> readRawValues(uint8_t *saturated);
-    Vec3<float> readScaledValues(uint8_t *saturated);
-    Vec3<float> readCalibratedValues(uint8_t *saturated);
+    Vec3<int> readRawValues(uint8_t *saturated=NULL);
+    Vec3<float> readScaledValues(uint8_t *saturated=NULL);
+    Vec3<float> readCalibratedValues(uint8_t *saturated=NULL);
 
     Vec3<float> getCalibration(bool update);
 
