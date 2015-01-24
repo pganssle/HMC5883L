@@ -1,0 +1,541 @@
+\hypertarget{class_h_m_c5883_l}{\section{H\+M\+C5883\+L Class Reference}
+\label{class_h_m_c5883_l}\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_h_m_c5883_l_ab552ed5dd985c500aa37ac11f9ed3eed}{H\+M\+C5883\+L} ()
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_adce69beed189b56b294775e273768b87}{initialize} (bool no\+Config=false)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ int $>$ \hyperlink{class_h_m_c5883_l_aef71c4ee9d0a549cb86f6bb90bb238b2}{read\+Raw\+Values} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{read\+Scaled\+Values} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_a16828549ee509bb4fa8a3995424c8889}{read\+Scaled\+Values\+Single} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L, uint32\+\_\+t max\+\_\+retries=0, uint32\+\_\+t delay\+\_\+time=H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_a6cc926cb263a856f4f3f77092d550139}{read\+Calibrated\+Values} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_acfb30a00675cd4a71809b103b06edfaa}{read\+Calibrated\+Values\+Single} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L, uint32\+\_\+t max\+\_\+retries=0, float delay\+\_\+time=H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_afe8557a9869b1b8be968db2eb26eb373}{get\+Calibration} (bool update, uint8\+\_\+t $\ast$saturated=N\+U\+L\+L, uint32\+\_\+t max\+\_\+retries=0, float delay\+\_\+time=H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_a041550377640f94f3d78cac70a781093}{run\+Pos\+Test} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L, uint32\+\_\+t max\+\_\+retries=0, float delay\+\_\+time=H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y)
+\item 
+\hyperlink{struct_vec3}{Vec3}$<$ float $>$ \hyperlink{class_h_m_c5883_l_a6285036cc2d7c6f320b5eda766cf71e5}{run\+Neg\+Test} (uint8\+\_\+t $\ast$saturated=N\+U\+L\+L, uint32\+\_\+t max\+\_\+retries=0, float delay\+\_\+time=H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_ad68af7d6a31a0ab313c6aa887512f861}{get\+Status} (bool $\ast$is\+Locked, bool $\ast$is\+Ready)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}{set\+Gain} (uint8\+\_\+t gain\+\_\+level)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_aed6ab6cfe07eafee7d99012dc092e41d}{set\+Averaging\+Rate} (uint8\+\_\+t avg\+\_\+rate)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a5c4eda2a75638936d50b25484b96147f}{set\+Output\+Rate} (uint8\+\_\+t out\+\_\+rate)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a6d584d734dfe62dad7ac7e32174285e9}{set\+Measurement\+Mode} (uint8\+\_\+t mode)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_af5b858a870f8f961d5540a18393eabf0}{set\+Bias\+Mode} (uint8\+\_\+t mode)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a44596be4b636171ac21f3b80a6f46ee0}{set\+High\+Speed\+I2\+C\+Mode} (bool enabled)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_aec9eb6926b5f7461abbad1a63943071f}{get\+Gain} (bool update\+Cache=false)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a6652a9c55333f6fd2aac541f57a692fc}{get\+Averaging\+Rate} (bool update\+Cache=false)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a2106f4efb55ac430b77b72485b9e57d6}{get\+Output\+Rate} (bool update\+Cache=false)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a4c29ddea7f0e5e142054944cfdae0ed5}{get\+Measurement\+Mode} (bool update\+Cache=false)
+\item 
+uint8\+\_\+t \hyperlink{class_h_m_c5883_l_a3dee47519218c6d46c8c1c3121c5948b}{get\+Bias\+Mode} (bool update\+Cache=false)
+\item 
+\hypertarget{class_h_m_c5883_l_a1f5045a220b5ed476f8eb38915c6571a}{uint8\+\_\+t {\bfseries get\+\_\+error\+\_\+code} (void)}\label{class_h_m_c5883_l_a1f5045a220b5ed476f8eb38915c6571a}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_h_m_c5883_l_ab3b98b1bbed0b767df657ce0a6630adc}{static const float {\bfseries output\+Rates} \mbox{[}$\,$\mbox{]} = \{0.\+75, 1.\+50, 3.\+00, 7.\+50, 15.\+00, 30.\+00, 75.\+00\}}\label{class_h_m_c5883_l_ab3b98b1bbed0b767df657ce0a6630adc}
+
+\item 
+\hypertarget{class_h_m_c5883_l_a631541baef14a0c965430a685ca14504}{static const float {\bfseries gain\+Ranges} \mbox{[}$\,$\mbox{]} = \{0.\+88, 1.\+30, 1.\+90, 2.\+50, 4.\+00, 4.\+70, 5.\+60, 8.\+10\}}\label{class_h_m_c5883_l_a631541baef14a0c965430a685ca14504}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_h_m_c5883_l_ab552ed5dd985c500aa37ac11f9ed3eed}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{H\+M\+C5883\+L}]{\setlength{\rightskip}{0pt plus 5cm}H\+M\+C5883\+L\+::\+H\+M\+C5883\+L (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_ab552ed5dd985c500aa37ac11f9ed3eed}
+Constructor for \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L} compass / magnetometer class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_h_m_c5883_l_a6652a9c55333f6fd2aac541f57a692fc}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Averaging\+Rate@{get\+Averaging\+Rate}}
+\index{get\+Averaging\+Rate@{get\+Averaging\+Rate}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Averaging\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Averaging\+Rate (
+\begin{DoxyParamCaption}
+\item[{bool}]{update\+Cache = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a6652a9c55333f6fd2aac541f57a692fc}
+Retrieve the averaging rate
+
+Retrieves the averaging rate that was set from {\ttfamily \hyperlink{class_h_m_c5883_l_aed6ab6cfe07eafee7d99012dc092e41d}{set\+Averaging\+Rate()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update\+Cache} & Boolean value, default {\ttfamily false}. If it evaluates as true, the gain level is retrieved from the device and cached in a private variable. Otherwise the value is retrieved from the cache.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from call to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} if {\ttfamily update\+Cache} is {\ttfamily true}. Otherwise no errors are returned.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a3dee47519218c6d46c8c1c3121c5948b}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Bias\+Mode@{get\+Bias\+Mode}}
+\index{get\+Bias\+Mode@{get\+Bias\+Mode}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Bias\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Bias\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{update\+Cache = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a3dee47519218c6d46c8c1c3121c5948b}
+Retrieve the bias mode setting from the device
+
+Retrieves the bias mode that was set from {\ttfamily \hyperlink{class_h_m_c5883_l_af5b858a870f8f961d5540a18393eabf0}{set\+Bias\+Mode()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update\+Cache} & Boolean value, default {\ttfamily false}. If it evaluates as true, the gain level is retrieved from the device and cached in a private variable. Otherwise the value is retrieved from the cache.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from call to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} if {\ttfamily update\+Cache} is {\ttfamily true}. Otherwise no errors are returned.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_afe8557a9869b1b8be968db2eb26eb373}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Calibration@{get\+Calibration}}
+\index{get\+Calibration@{get\+Calibration}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Calibration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::get\+Calibration (
+\begin{DoxyParamCaption}
+\item[{bool}]{update, }
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}, }
+\item[{uint32\+\_\+t}]{max\+\_\+retries = {\ttfamily 0}, }
+\item[{float}]{delay\+\_\+time = {\ttfamily HMC\+\_\+SLEEP\+\_\+DELAY}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_afe8557a9869b1b8be968db2eb26eb373}
+Runs a positive and negative bias test and sets the calibration from the average
+
+Runs {\ttfamily \hyperlink{class_h_m_c5883_l_a041550377640f94f3d78cac70a781093}{run\+Pos\+Test()}}, then {\ttfamily \hyperlink{class_h_m_c5883_l_a6285036cc2d7c6f320b5eda766cf71e5}{run\+Neg\+Test()}} and averages the values, and sets the calibration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update} & If evaluates to true, run the calibration and update the cache. Otherwise just returns the cached value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the new calibration value. On error, returns (0, 0, 0) and sets {\ttfamily err\+\_\+code} to the error.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_aec9eb6926b5f7461abbad1a63943071f}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Gain@{get\+Gain}}
+\index{get\+Gain@{get\+Gain}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Gain (
+\begin{DoxyParamCaption}
+\item[{bool}]{update\+Cache = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_aec9eb6926b5f7461abbad1a63943071f}
+Retrieve the gain value
+
+Retrieves the gain value level that was set from {\ttfamily \hyperlink{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}{set\+Gain()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update\+Cache} & Boolean value, default {\ttfamily false}. If it evaluates as true, the gain level is retrieved from the device and cached in a private variable. Otherwise the value is retrieved from the cache.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from call to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} if {\ttfamily update\+Cache} is {\ttfamily true}. Otherwise no errors are returned.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a4c29ddea7f0e5e142054944cfdae0ed5}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Measurement\+Mode@{get\+Measurement\+Mode}}
+\index{get\+Measurement\+Mode@{get\+Measurement\+Mode}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Measurement\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Measurement\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{update\+Cache = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a4c29ddea7f0e5e142054944cfdae0ed5}
+Retrieve the device's measurement mode
+
+Retrieves the measurement mode that was set from {\ttfamily \hyperlink{class_h_m_c5883_l_a6d584d734dfe62dad7ac7e32174285e9}{set\+Measurement\+Mode()}}. If the cached mode is {\ttfamily H\+M\+C\+\_\+\+Measurement\+Single}, the cache is always updated, irrespective of the value of {\ttfamily update\+Cache}, since the mode is set to {\ttfamily H\+M\+C\+\_\+\+Measurement\+Idle} when data is ready.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update\+Cache} & Boolean value, default {\ttfamily false}. If it evaluates as true, the gain level is retrieved from the device and cached in a private variable. Otherwise the value is retrieved from the cache.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from call to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} if {\ttfamily update\+Cache} is {\ttfamily true}. Otherwise no errors are returned.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a2106f4efb55ac430b77b72485b9e57d6}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Output\+Rate@{get\+Output\+Rate}}
+\index{get\+Output\+Rate@{get\+Output\+Rate}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Output\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Output\+Rate (
+\begin{DoxyParamCaption}
+\item[{bool}]{update\+Cache = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a2106f4efb55ac430b77b72485b9e57d6}
+Retrieve the data output rate in Continuous mode
+
+Retrieves the data output rate that was set from {\ttfamily \hyperlink{class_h_m_c5883_l_a5c4eda2a75638936d50b25484b96147f}{set\+Output\+Rate()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em update\+Cache} & Boolean value, default {\ttfamily false}. If it evaluates as true, the gain level is retrieved from the device and cached in a private variable. Otherwise the value is retrieved from the cache.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from call to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} if {\ttfamily update\+Cache} is {\ttfamily true}. Otherwise no errors are returned.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_ad68af7d6a31a0ab313c6aa887512f861}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!get\+Status@{get\+Status}}
+\index{get\+Status@{get\+Status}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{get\+Status}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::get\+Status (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{is\+Locked, }
+\item[{bool $\ast$}]{is\+Ready}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_ad68af7d6a31a0ab313c6aa887512f861}
+Read the status register
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em is\+Locked} & Whether or not the status L\+O\+C\+K bit is set. \\
+\hline
+\mbox{\tt out}  & {\em is\+Ready} & Whether or not the status R\+D\+Y bit is set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value of the status register, or a value $>$= 4 on error (no valid status register values are $>$ 3). On error, {\ttfamily err\+\_\+code} is also set.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_adce69beed189b56b294775e273768b87}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!initialize@{initialize}}
+\index{initialize@{initialize}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::initialize (
+\begin{DoxyParamCaption}
+\item[{bool}]{no\+Config = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_adce69beed189b56b294775e273768b87}
+Initialize the magnetometer communications.
+
+Starts I2\+C communication with the \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L} magnetometer. This creates the Wire interface with the device. If the {\ttfamily no\+Config} parameter is set to {\ttfamily false} (default), the magnetometer is also explicitly initialized with the device default values for the various configuration parameters\+:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Parameter }&{\bf Default value  }\\\cline{1-2}
+Gain &{\ttfamily \mbox{[}H\+M\+C\+\_\+\+G\+A\+I\+N130\mbox{]}} 1090 L\+Sb/\+Gauss (+/-\/ 1.\+3 G sensor range) \\\cline{1-2}
+Averaging rate &{\ttfamily \mbox{[}H\+M\+C\+\_\+\+A\+V\+G1\mbox{]}} 1 point per sample \\\cline{1-2}
+Data output rate &{\ttfamily \mbox{[}H\+M\+C\+\_\+\+R\+A\+T\+E1500\mbox{]}} 15 Hz \\\cline{1-2}
+Measurement mode &{\ttfamily \mbox{[}H\+M\+C\+\_\+\+Measurement\+Idle\mbox{]}} Idle mode \\\cline{1-2}
+Bias mode &{\ttfamily \mbox{[}H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+O\+N\+E\mbox{]}} No bias \\\cline{1-2}
+\end{TabularC}
+If {\ttfamily no\+Config} is set to {\ttfamily true}, this will request the values of some of the parameters already set, so as to ensure the accuracy of calls to functions such as {\ttfamily get\+Delay()}, which may use cached values for compass parameters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em no\+Config} & Optional parameter. If specified {\ttfamily true}, explicitly initializes the device using default parameters.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error, or an error code. See {\ttfamily H\+M\+C5883\+L\+\_\+\+Errors.\+h} for details.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a6cc926cb263a856f4f3f77092d550139}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!read\+Calibrated\+Values@{read\+Calibrated\+Values}}
+\index{read\+Calibrated\+Values@{read\+Calibrated\+Values}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{read\+Calibrated\+Values}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::read\+Calibrated\+Values (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a6cc926cb263a856f4f3f77092d550139}
+Return the field vector, scaled by the calibration, in milli\+Gauss.
+
+Makes a call to {\ttfamily \hyperlink{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{read\+Scaled\+Values()}}, then scales the results by the calibration. By default, the calibration is (1.\+0, 1.\+0, 1.\+0). Make a call to {\ttfamily get\+Calibration(true)} to initialize the calibration.
+
+\begin{DoxyReturn}{Returns}
+Returns the value of {\ttfamily \hyperlink{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{read\+Scaled\+Values()}}, scaled by the calibration, in m\+G. On error, returns (0, 0, 0) and sets the error code.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_acfb30a00675cd4a71809b103b06edfaa}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!read\+Calibrated\+Values\+Single@{read\+Calibrated\+Values\+Single}}
+\index{read\+Calibrated\+Values\+Single@{read\+Calibrated\+Values\+Single}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{read\+Calibrated\+Values\+Single}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::read\+Calibrated\+Values\+Single (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}, }
+\item[{uint32\+\_\+t}]{max\+\_\+retries = {\ttfamily 0}, }
+\item[{float}]{delay\+\_\+time = {\ttfamily HMC\+\_\+SLEEP\+\_\+DELAY}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_acfb30a00675cd4a71809b103b06edfaa}
+Return the field vector, scaled by the calibration, in milli\+Gauss.
+
+Makes a single call to {\ttfamily \hyperlink{class_h_m_c5883_l_a16828549ee509bb4fa8a3995424c8889}{read\+Scaled\+Values\+Single()}}, then scales the results by the calibration stored in the {\ttfamily \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L}} object. By default, the calibration is {\ttfamily (1.\+0, 1.\+0, 1.\+0)}. Make a call to {\ttfamily get\+Calibration(true)} to initialize the calibration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em $\ast$saturated} & Warning flags in case any of the channels are saturated. Pass {\ttfamily N\+U\+L\+L} if you don't want to read these out. Default value is {\ttfamily N\+U\+L\+L}. \\
+\hline
+\mbox{\tt in}  & {\em max\+\_\+retries} & The maximum number of times to try to read the measurement. Pass 0 if you don't want to limit the number of retries. Default is 0. \\
+\hline
+\mbox{\tt in}  & {\em delay\+\_\+time} & Time to delay before checking whether or not data is ready to be read from the device (also the repetition delay between checks for whether data is ready), in milliseconds. The default is {\ttfamily H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y}, which is 7 ms (6.\+25 ms = 160 Hz, the maximum data output rate of the device, rounded up). Any non-\/negative value is valid.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value of {\ttfamily \hyperlink{class_h_m_c5883_l_a16828549ee509bb4fa8a3995424c8889}{read\+Scaled\+Values\+Single()}}, scaled by the calibration, in m\+G. On error, returns (0, 0, 0) and sets the error code.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_aef71c4ee9d0a549cb86f6bb90bb238b2}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!read\+Raw\+Values@{read\+Raw\+Values}}
+\index{read\+Raw\+Values@{read\+Raw\+Values}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{read\+Raw\+Values}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ int $>$ H\+M\+C5883\+L\+::read\+Raw\+Values (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_aef71c4ee9d0a549cb86f6bb90bb238b2}
+Read the raw values from the device
+
+Values on the \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L} are stored in the 6 data registers, in two's complement form, with each axis stored as two 8-\/bit integers (big-\/endian). This reads the raw integer values from the registers. For data under-\/ and overflows, the registers are set to -\/4096 -\/ this is detected and indicated with the output parameter {\ttfamily saturated}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em saturated} & A warning code with flags {\ttfamily W\+C\+\_\+\+X\+\_\+\+S\+A\+T\+U\+R\+A\+T\+E\+D}, {\ttfamily W\+C\+\_\+\+Y\+\_\+\+S\+A\+T\+U\+R\+A\+T\+E\+D} and {\ttfamily W\+C\+\_\+\+Z\+\_\+\+S\+A\+T\+U\+R\+A\+T\+E\+D} indicating whether or not any of the channels has data under-\/ or overflow.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an integer 3-\/vector (x, y, z), or (0, 0, 0) on
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!read\+Scaled\+Values@{read\+Scaled\+Values}}
+\index{read\+Scaled\+Values@{read\+Scaled\+Values}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{read\+Scaled\+Values}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::read\+Scaled\+Values (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}
+Read the field vector and return the value in milli\+Gauss.
+
+Scales the integers returned by {\ttfamily \hyperlink{class_h_m_c5883_l_aef71c4ee9d0a549cb86f6bb90bb238b2}{read\+Raw\+Values()}} by the appropriate gain value determined by the value set by {\ttfamily \hyperlink{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}{set\+Gain()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em $\ast$saturated} & Warning flags in case any of the channels are saturated. Pass {\ttfamily N\+U\+L\+L} if you don't want to read these out. Default value is {\ttfamily N\+U\+L\+L}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a {\ttfamily \hyperlink{struct_vec3}{Vec3}$<$float$>$} containing the scaled values for the x, y and z channels or (0, 0, 0) on error.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a16828549ee509bb4fa8a3995424c8889}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!read\+Scaled\+Values\+Single@{read\+Scaled\+Values\+Single}}
+\index{read\+Scaled\+Values\+Single@{read\+Scaled\+Values\+Single}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{read\+Scaled\+Values\+Single}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::read\+Scaled\+Values\+Single (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}, }
+\item[{uint32\+\_\+t}]{max\+\_\+retries = {\ttfamily 0}, }
+\item[{uint32\+\_\+t}]{delay\+\_\+time = {\ttfamily HMC\+\_\+SLEEP\+\_\+DELAY}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a16828549ee509bb4fa8a3995424c8889}
+Wrapper for {\ttfamily \hyperlink{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{read\+Scaled\+Values()}} which makes a single measurement
+
+The device is put into single measurement mode, then wait {\ttfamily delay\+\_\+time} (in milliseconds), a single {\ttfamily \hyperlink{class_h_m_c5883_l_ac270d4672e1e0ed759ee07a504f2ab00}{read\+Scaled\+Values()}} measurement is made, then the measurement mode is restored to the initial mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em $\ast$saturated} & Warning flags in case any of the channels are saturated. Pass {\ttfamily N\+U\+L\+L} if you don't want to read these out. Default value is {\ttfamily N\+U\+L\+L}. \\
+\hline
+\mbox{\tt in}  & {\em max\+\_\+retries} & The maximum number of times to try to read the measurement. Pass 0 if you don't want to limit the number of retries. Default is 0. \\
+\hline
+\mbox{\tt in}  & {\em delay\+\_\+time} & Time to delay before checking whether or not data is ready to be read from the device (also the repetition delay between checks for whether data is ready), in milliseconds. The default is {\ttfamily H\+M\+C\+\_\+\+S\+L\+E\+E\+P\+\_\+\+D\+E\+L\+A\+Y}, which is 7 ms (6.\+25 ms = 160 Hz, the maximum data output rate of the device, rounded up). Any non-\/negative value is valid.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a {\ttfamily \hyperlink{struct_vec3}{Vec3}$<$float$>$} containing the scaled values for the x, y and z channels or (0, 0, 0) on error. In addition to errors returned from {\ttfamily I2\+C\+Device} calls, this returns {\ttfamily E\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+U\+F\+L\+O\+A\+T} if a negative {\ttfamily delay\+\_\+time} is passed.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a6285036cc2d7c6f320b5eda766cf71e5}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!run\+Neg\+Test@{run\+Neg\+Test}}
+\index{run\+Neg\+Test@{run\+Neg\+Test}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{run\+Neg\+Test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::run\+Neg\+Test (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}, }
+\item[{uint32\+\_\+t}]{max\+\_\+retries = {\ttfamily 0}, }
+\item[{float}]{delay\+\_\+time = {\ttfamily HMC\+\_\+SLEEP\+\_\+DELAY}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a6285036cc2d7c6f320b5eda766cf71e5}
+Runs the negative bias self-\/test
+
+Sets the bias mode to {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+E\+G\+A\+T\+I\+V\+E}, makes a measurement, then returns the bias mode to {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+O\+N\+E} and returns the value of the measurement.
+
+\begin{DoxyReturn}{Returns}
+Returns the value of a negative-\/biased measurement. On error, returns (0, 0, 0) and sets {\ttfamily err\+\_\+code} to the error.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a041550377640f94f3d78cac70a781093}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!run\+Pos\+Test@{run\+Pos\+Test}}
+\index{run\+Pos\+Test@{run\+Pos\+Test}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{run\+Pos\+Test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}$<$ float $>$ H\+M\+C5883\+L\+::run\+Pos\+Test (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{saturated = {\ttfamily NULL}, }
+\item[{uint32\+\_\+t}]{max\+\_\+retries = {\ttfamily 0}, }
+\item[{float}]{delay\+\_\+time = {\ttfamily HMC\+\_\+SLEEP\+\_\+DELAY}}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a041550377640f94f3d78cac70a781093}
+Runs the positive bias self-\/test
+
+Sets the bias mode to {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+P\+O\+S\+I\+T\+I\+V\+E}, makes a measurement, then returns the bias mode to {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+O\+N\+E} and returns the value of the measurement.
+
+\begin{DoxyReturn}{Returns}
+Returns the value of a positive-\/biased measurement. On error, returns (0, 0, 0) and sets {\ttfamily err\+\_\+code} to the error.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_aed6ab6cfe07eafee7d99012dc092e41d}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+Averaging\+Rate@{set\+Averaging\+Rate}}
+\index{set\+Averaging\+Rate@{set\+Averaging\+Rate}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+Averaging\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+Averaging\+Rate (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{avg\+\_\+rate}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_aed6ab6cfe07eafee7d99012dc092e41d}
+Set the magnetometer averaging rate.
+
+This is the number of averages composing each measurement. It sets bits 5 and 6 on Configuration Register A on the device.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em avg\+\_\+rate} & The averaging rate. The number of averages per measurement is 1$<$$<$avg\+\_\+rate.\\
+\hline
+\end{DoxyParams}
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf {\ttfamily avg\+\_\+rate} }&\PBS\centering {\bf Value }&\PBS\centering {\bf Rate  }\\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+A\+V\+G1} &\PBS\centering 0 &\PBS\centering 1 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+A\+V\+G2} &\PBS\centering 1 &\PBS\centering 2 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+A\+V\+G4} &\PBS\centering 2 &\PBS\centering 4 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+A\+V\+G8} &\PBS\centering 3 &\PBS\centering 8 \\\cline{1-3}
+\end{TabularC}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Otherwise returns error code. Returns I2\+C errors from calls to {\ttfamily read\+\_\+data()} and {\ttfamily write\+\_\+data()}, as well as\+:
+\begin{DoxyItemize}
+\item {\ttfamily {\ttfamily E\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+N\+A\+V\+G}} Returned if the number of averages is out of range.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_af5b858a870f8f961d5540a18393eabf0}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+Bias\+Mode@{set\+Bias\+Mode}}
+\index{set\+Bias\+Mode@{set\+Bias\+Mode}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+Bias\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+Bias\+Mode (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{mode}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_af5b858a870f8f961d5540a18393eabf0}
+Sets the measurement bias mode (negative, positive or none).
+
+The \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L} has a self-\/test mode which applies either a negative or positive bias field along all three channels; the mode is set in the bottom two bits of the Configuration Register A. The applied bias fields along all three axes are\+:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Axis }&{\bf Bias-\/on field (m\+G)  }\\\cline{1-2}
+\PBS\centering X &±1160 \\\cline{1-2}
+\PBS\centering Y &±1160 \\\cline{1-2}
+\PBS\centering Z &±1080 \\\cline{1-2}
+\end{TabularC}
+In the negative and positive bias modes, each \char`\"{}measurement\char`\"{} consists of two measurements, a measurement with the bias field applied and one without, and the device returns the difference.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mode} & Valid bias modes are {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+O\+N\+E} \mbox{[}0\mbox{]}, {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+P\+O\+S\+I\+T\+I\+V\+E} \mbox{[}1\mbox{]} and {\ttfamily H\+M\+C\+\_\+\+B\+I\+A\+S\+\_\+\+N\+E\+G\+A\+T\+I\+V\+E} \mbox{[}2\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from calls to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} and {\ttfamily \hyperlink{class_i2_c_dev_ae9c3d3479298e87151ac07c73f734b68}{I2\+C\+Dev.\+write\+\_\+data()}}
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+Gain@{set\+Gain}}
+\index{set\+Gain@{set\+Gain}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+Gain (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{gain\+\_\+level}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}
+Set the magnetometer gain value.
+
+Sets the magnetometer gain value, which determines the sensor range and the digital resolution. The gain level is bits 5-\/7 of Configuration Register B. The rest of configuration register B should be 0.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em gain\+\_\+level} & The gain setting, the values for which can be found in the following table\+:\\
+\hline
+\end{DoxyParams}
+\begin{TabularC}{5}
+\hline
+\rowcolor{lightgray}{\bf {\ttfamily gain\+\_\+level} }&\PBS\centering {\bf Value }&\PBS\centering {\bf Gain (L\+S\+B/\+G) }&\PBS\centering {\bf Range (G) }&\PBS\centering {\bf Resolution (m\+G / L\+S\+B)  }\\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N088} &\PBS\centering 0 &\PBS\centering 1370 &\PBS\centering ±0.88 &\PBS\centering 0.\+73 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N130} &\PBS\centering 1 &\PBS\centering 1090 &\PBS\centering ±1.30 &\PBS\centering 0.\+92 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N190} &\PBS\centering 2 &\PBS\centering 820 &\PBS\centering ±1.90 &\PBS\centering 1.\+22 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N250} &\PBS\centering 3 &\PBS\centering 660 &\PBS\centering ±2.50 &\PBS\centering 1.\+52 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N400} &\PBS\centering 4 &\PBS\centering 440 &\PBS\centering ±4.00 &\PBS\centering 2.\+27 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N470} &\PBS\centering 5 &\PBS\centering 390 &\PBS\centering ±4.70 &\PBS\centering 2.\+56 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N560} &\PBS\centering 6 &\PBS\centering 330 &\PBS\centering ±5.60 &\PBS\centering 3.\+03 \\\cline{1-5}
+{\ttfamily H\+M\+C\+\_\+\+G\+A\+I\+N810} &\PBS\centering 7 &\PBS\centering 230 &\PBS\centering ±8.10 &\PBS\centering 4.\+35 \\\cline{1-5}
+\end{TabularC}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Otherwise returns error code. Returns I2\+C errors from calls to {\ttfamily write\+\_\+data()}, as well as\+:
+\begin{DoxyItemize}
+\item {\ttfamily {\ttfamily E\+C\+\_\+\+B\+A\+D\+\_\+\+G\+A\+I\+N\+\_\+\+L\+E\+V\+E\+L}} Returned if input gain level is out of range.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a44596be4b636171ac21f3b80a6f46ee0}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+High\+Speed\+I2\+C\+Mode@{set\+High\+Speed\+I2\+C\+Mode}}
+\index{set\+High\+Speed\+I2\+C\+Mode@{set\+High\+Speed\+I2\+C\+Mode}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+High\+Speed\+I2\+C\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+High\+Speed\+I2\+C\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{enabled}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a44596be4b636171ac21f3b80a6f46ee0}
+Enable or disable High Speed I2\+C (3400 k\+Hz)
+
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. returns I2\+C errors from calls to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} and {\ttfamily \hyperlink{class_i2_c_dev_ae9c3d3479298e87151ac07c73f734b68}{I2\+C\+Dev.\+write\+\_\+data()}}.
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a6d584d734dfe62dad7ac7e32174285e9}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+Measurement\+Mode@{set\+Measurement\+Mode}}
+\index{set\+Measurement\+Mode@{set\+Measurement\+Mode}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+Measurement\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+Measurement\+Mode (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{mode}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a6d584d734dfe62dad7ac7e32174285e9}
+Sets the measurement mode (Continuous, Single or Idle).
+
+Measurement mode is the first two bits of the mode register. In continuous mode, data is output at the rate set by {\ttfamily set\+Output\+Rate}. In single measurement mode, a single measurement is made, the R\+D\+Y pin is set high and mode is returned to idle. In single measurement mode, the approximate maximum data rate is 160 Hz. Idle is self-\/explanatory.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mode} & The measurement mode, {\ttfamily H\+M\+C\+\_\+\+Measurement\+Continuous} \mbox{[}0\mbox{]}, {\ttfamily H\+M\+C\+\_\+\+Measurement\+Single} \mbox{[}1\mbox{]}, {\ttfamily H\+M\+C\+\_\+\+Measurement\+Idle} \mbox{[}2\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from calls to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} and {\ttfamily \hyperlink{class_i2_c_dev_ae9c3d3479298e87151ac07c73f734b68}{I2\+C\+Dev.\+write\+\_\+data()}}, as well as\+:
+\begin{DoxyItemize}
+\item {\ttfamily {\ttfamily E\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+\_\+\+M\+O\+D\+E}} Returned if the measurement mode is out of range.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\hypertarget{class_h_m_c5883_l_a5c4eda2a75638936d50b25484b96147f}{\index{H\+M\+C5883\+L@{H\+M\+C5883\+L}!set\+Output\+Rate@{set\+Output\+Rate}}
+\index{set\+Output\+Rate@{set\+Output\+Rate}!H\+M\+C5883\+L@{H\+M\+C5883\+L}}
+\subsubsection[{set\+Output\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t H\+M\+C5883\+L\+::set\+Output\+Rate (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{out\+\_\+rate}
+\end{DoxyParamCaption}
+)}}\label{class_h_m_c5883_l_a5c4eda2a75638936d50b25484b96147f}
+Sets the data output rate in continuous output mode.
+
+Data output rate in continuous mode. Value is set in bits 2-\/4 of configuration register A.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out\+\_\+rate} & The data output rate. Valid values are 0-\/6\+:\\
+\hline
+\end{DoxyParams}
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf {\ttfamily out\+\_\+rate} }&\PBS\centering {\bf Value }&\PBS\centering {\bf Rate (Hz)  }\\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E0075} &\PBS\centering 0 &\PBS\centering 0.\+75 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E0150} &\PBS\centering 1 &\PBS\centering 1.\+50 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E0300} &\PBS\centering 2 &\PBS\centering 3.\+00 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E0750} &\PBS\centering 3 &\PBS\centering 7.\+50 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E1500} &\PBS\centering 4 &\PBS\centering 15.\+00 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E3000} &\PBS\centering 5 &\PBS\centering 30.\+00 \\\cline{1-3}
+{\ttfamily H\+M\+C\+\_\+\+R\+A\+T\+E7500} &\PBS\centering 6 &\PBS\centering 75.\+00 \\\cline{1-3}
+\end{TabularC}
+\begin{DoxyReturn}{Returns}
+Returns {\ttfamily 0} on no error. Returns I2\+C errors from calls to {\ttfamily \hyperlink{class_i2_c_dev_a476fc2e973112f3a8ba9e2146d48ade9}{I2\+C\+Dev.\+read\+\_\+data()}} and {\ttfamily \hyperlink{class_i2_c_dev_ae9c3d3479298e87151ac07c73f734b68}{I2\+C\+Dev.\+write\+\_\+data()}}, as well as\+:
+\begin{DoxyItemize}
+\item {\ttfamily {\ttfamily E\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+O\+U\+T\+R\+A\+T\+E}} Returned if the output rate is out of range.
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_h_m_c5883_l_8h}{H\+M\+C5883\+L.\+h}\item 
+\hyperlink{_h_m_c5883_l_8cpp}{H\+M\+C5883\+L.\+cpp}\end{DoxyCompactItemize}

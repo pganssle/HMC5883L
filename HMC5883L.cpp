@@ -5,13 +5,14 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
 
 @author Paul J. Ganssle
-@version 0.1
+@version 0.2
 @date 2015-01-14
 */
 
 #include <HMC5883L.h>
 #include <I2CDev.h>
 #include <Vec3.h>
+#include <unistd.h>
 
 HMC5883L::HMC5883L() {
     /**  Constructor for HMC5883L compass / magnetometer class. */
@@ -128,6 +129,7 @@ Vec3<int> HMC5883L::readRawValues(uint8_t *saturated) {
     if (err_code = I2CDevice.get_err_code()) {
         return Vec3<int>(0, 0, 0);
     }
+
     int16_t x = regValue[0] << 8 | regValue[1];     // First two bytes are x.
     int16_t y = regValue[4] << 8 | regValue[5];     // Bytes 4 and 5 are y.
     int16_t z = regValue[2] << 8 | regValue[3];     // Bytes 2 and 3 are z.
@@ -148,6 +150,12 @@ Vec3<float>  HMC5883L::readScaledValues(uint8_t *saturated) {
 
     Scales the integers returned by `readRawValues()` by the appropriate gain value determined by
     the value set by `setGain()`.
+
+    @param[out] *saturated Warning flags in case any of the channels are saturated. Pass `NULL` if
+                           you don't want to read these out. Default value is `NULL`.
+
+    @return Returns a `Vec3<float>` containing the scaled values for the x, y and z channels or
+            (0, 0, 0) on error.
     */
 
     Vec3<int> rawValues = readRawValues(saturated);
@@ -161,18 +169,113 @@ Vec3<float>  HMC5883L::readScaledValues(uint8_t *saturated) {
     return rv * gainValues[gain];
 }
 
-Vec3<float> HMC5883L::readCalibratedValues(uint8_t *saturated) {
-    /** Return the field vector, scaled by the calibration, and return the value in milliGauss.
+Vec3<float> HMC5883L::readScaledValuesSingle(uint8_t *saturated, uint32_t max_retries, 
+                                             float delay_time) {
+    /** Wrapper for `readScaledValues()` which makes a single measurement
+
+    The device is put into single measurement mode, then wait `delay_time` (in milliseconds), 
+    a single `readScaledValues()` measurement is made, then the measurement mode is restored to the
+    initial mode.
     
+    @param[out] *saturated Warning flags in case any of the channels are saturated. Pass `NULL` if
+                           you don't want to read these out. Default value is `NULL`.
+    @param[in] max_retries The maximum number of times to try to read the measurement. Pass 0 if
+                           you don't want to limit the number of retries. Default is 0.
+    @param[in] delay_time  Time to delay before checking whether or not data is ready to be read
+                           from the device (also the repetition delay between checks for whether
+                           data is ready), in milliseconds. The default is `HMC_SLEEP_DELAY`, which
+                           is 7 ms (6.25 ms = 160 Hz, the maximum data output rate of the device, 
+                           rounded up). Any non-negative value is valid.
+
+    @return Returns a `Vec3<float>` containing the scaled values for the x, y and z channels or
+            (0, 0, 0) on error. In addition to errors returned from `I2CDevice` calls, this
+            returns `EC_INVALID_UFLOAT` if a negative `delay_time` is passed.
     */
 
-    Vec3<float> scaledValues = readScaledValues(saturated);
+    Vec3<float> zv = Vec3<float>(0.0, 0.0, 0.0);    // Returned on error
+    if (delay_time < 0.0) {
+        err_code = EC_INVALID_UFLOAT;
+        return zv;
+    }
 
-    // No need to check for error code - scaledValues returns a zero vector on error anyway.
-    return scaledValues * calibration;
+    uint8_t mode = getMeasurementMode();
+
+    if (err_code = setMeasurementMode(HMC_MeasurementSingle)) {
+        return zv;
+    }
+
+    uint32_t retries = 0;
+    bool locked, ready;
+    while (max_retries && retries++ < max_retries) {
+        if (err_code = getStatus(&locked, &ready)) {
+            return zv;
+        }
+
+        if (!locked && ready) {
+            break;
+        }
+
+        usleep(delay_time*1e3);        // Convert milliseconds to microseconds
+    }
+
+    Vec3<float> rv = readScaledValues(saturated);
+
+    // Whether or not there's an error, try to restore the old measurement mode if possible
+    uint8_t old_ec = err_code;
+    if (!(err_code = setMeasurementMode(mode))) {
+        err_code = old_ec;          // In case the scaledValues failed but the mode change didn't.
+    }
+
+    if (err_code) {
+        return zv;
+    }
+
+    return rv;
 }
 
-Vec3<float> HMC5883L::getCalibration(bool update) {
+Vec3<float> HMC5883L::readCalibratedValues(uint8_t *saturated) {
+    /** Return the field vector, scaled by the calibration, in milliGauss.
+
+    Makes a call to `readScaledValues()`, then scales the results by the calibration. By default,
+    the calibration is (1.0, 1.0, 1.0). Make a call to `getCalibration(true)` to initialize the
+    calibration. 
+    
+    @return Returns the value of `readScaledValues()`, scaled by the calibration, in mG. On error,
+            returns (0, 0, 0) and sets the error code.
+    */
+
+    // No need to check for error code - scaledValues returns a zero vector on error
+    return readScaledValues(saturated) * calibration;
+}
+
+Vec3<float> HMC5883L::readCalibratedValuesSingle(uint8_t *saturated, uint32_t max_retries,
+                                                 float delay_time) {
+    /** Return the field vector, scaled by the calibration, in milliGauss.
+
+    Makes a single call to `readScaledValuesSingle()`, then scales the results by the calibration
+    stored in the `HMC5883L` object. By default, the calibration is `(1.0, 1.0, 1.0)`. Make a call
+    to `getCalibration(true)` to initialize the calibration.
+   
+    @param[out] *saturated Warning flags in case any of the channels are saturated. Pass `NULL` if
+                           you don't want to read these out. Default value is `NULL`.
+    @param[in] max_retries The maximum number of times to try to read the measurement. Pass 0 if
+                           you don't want to limit the number of retries. Default is 0.
+    @param[in] delay_time  Time to delay before checking whether or not data is ready to be read
+                           from the device (also the repetition delay between checks for whether
+                           data is ready), in milliseconds. The default is `HMC_SLEEP_DELAY`, which
+                           is 7 ms (6.25 ms = 160 Hz, the maximum data output rate of the device, 
+                           rounded up). Any non-negative value is valid.
+
+    @return Returns the value of `readScaledValuesSingle()`, scaled by the calibration, in mG. On
+            error, returns (0, 0, 0) and sets the error code.
+    */
+
+    // No need to check for error code - scaledValuesSingle returns a zero vector on error
+    return readScaledValuesSingle(saturated, max_retries, delay_time) * calibration;
+}
+
+Vec3<float> HMC5883L::getCalibration(bool update, uint8_t *saturated,
+                                     uint32_t max_retries, float delay_time) {
     /** Runs a positive and negative bias test and sets the calibration from the average
 
     Runs `runPosTest()`, then `runNegTest()` and averages the values, and sets the calibration.
@@ -187,12 +290,12 @@ Vec3<float> HMC5883L::getCalibration(bool update) {
     if (update) {
         Vec3<float> zero_vec = Vec3<float>(0.0, 0.0, 0.0);      // Returned on error
 
-        Vec3<float> pos_test = runPosTest();
+        Vec3<float> pos_test = runPosTest(saturated, max_retries, delay_time);
         if (err_code) {
             return zero_vec;
         }
 
-        Vec3<float> neg_test = runNegTest();
+        Vec3<float> neg_test = runNegTest(saturated, max_retries, delay_time);
         if (err_code) {
             return zero_vec;
         }
@@ -207,7 +310,7 @@ Vec3<float> HMC5883L::getCalibration(bool update) {
     return calibration;
 }
 
-Vec3<float> HMC5883L::runPosTest(void) {
+Vec3<float> HMC5883L::runPosTest(uint8_t *saturated, uint32_t max_retries, float delay_time) {
     /** Runs the positive bias self-test
 
     Sets the bias mode to `HMC_BIAS_POSITIVE`, makes a measurement, then returns the bias mode to
@@ -223,19 +326,22 @@ Vec3<float> HMC5883L::runPosTest(void) {
         return zero_vec;
     }
 
-    Vec3<float> rv = readScaledValues(NULL);
-    if (err_code) {
-        return zero_vec;
+    Vec3<float> rv = readScaledValuesSingle(saturated, max_retries, delay_time);
+
+    // Even if there's an error reading the scaled values, try to restore the bias mode
+    uint8_t old_ec = err_code;
+    if (!(err_code = setBiasMode(HMC_BIAS_NONE))) {
+        err_code = old_ec;
     }
 
-    if (err_code = setBiasMode(HMC_BIAS_NONE)) {
+    if (err_code) {
         return zero_vec;
     }
 
     return rv;
 }
 
-Vec3<float> HMC5883L::runNegTest(void) {
+Vec3<float> HMC5883L::runNegTest(uint8_t *saturated, uint32_t max_retries, uint32_t delay_time) {
     /** Runs the negative bias self-test
 
     Sets the bias mode to `HMC_BIAS_NEGATIVE`, makes a measurement, then returns the bias mode to
@@ -251,12 +357,15 @@ Vec3<float> HMC5883L::runNegTest(void) {
         return zero_vec;
     }
 
-    Vec3<float> rv = readScaledValues(NULL);
-    if (err_code) {
-        return zero_vec;
+    Vec3<float> rv = readScaledValuesSingle(saturated, max_retries, delay_time);
+
+    // Even if there's an error reading the scaled values, try to restore the bias mode
+    uint8_t old_ec = err_code;
+    if (!(err_code = setBiasMode(HMC_BIAS_NONE))) {
+        err_code = old_ec;
     }
 
-    if (err_code = setBiasMode(HMC_BIAS_NONE)) {
+    if (err_code) {
         return zero_vec;
     }
 

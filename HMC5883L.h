@@ -5,31 +5,60 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
 
 @author Paul J. Ganssle
-@version 0.1
+@version 0.2
 @date 2015-01-14
 */
 
 #ifndef HMC5883L_H
 #define HMC5883L_H
 
-#include <Arduino.h>
 #include <I2CDev.h>
 #include <Vec3.h>
 #include <Wire.h>
 
+/** @{ */
 // Device addresses
-#define HMC5883L_ADDR 0x1E
+#define HMC5883L_ADDR 0x1E          /*!< The I2C address of all HMC5883L digital magnetometers */
 
-#define ConfigRegisterA 0x00
-#define ConfigRegisterB 0x01
-#define ModeRegister 0x02
+#define ConfigRegisterA 0x00        /*!< Register address for Config Register A, which contains:
+                                     | Location | Description                                   |
+                                     | :------: | :-------------------------------------------- |
+                                     |   5 - 6  | Number of samples averaged,                   |
+                                     |          | see `setAveragingRate()`                      |
+                                     |   2 - 4  | Data output rate, see `setOutputRate()`       |
+                                     |   0 - 1  | Bias measurement register, see                |
+                                     |          | `setBiasMode()`                               | */
 
-#define DataRegister 0x03
-#define StatusRegister 0x09
+#define ConfigRegisterB 0x01        /*!< Register address for Config Register A, which contains:
+                                     | Location | Description                                   |
+                                     | :------: | :-------------------------------------------- |
+                                     |   5 - 7  | Gain configuration, see `setGain()`           |
+                                     |   0 - 4  | Not used - must be cleared for                |
+                                     |          | proper operation                              | */
 
-// Bias fields in mG
-#define HMC_BIAS_XY 1160.0
-#define HMC_BIAS_Z 1080.0
+#define ModeRegister 0x02           /*!< Register address for the mode register, which contains:
+                                     | Location | Description                                   |
+                                     | :------: | :-------------------------------------------- |
+                                     |     7    | High speed I2C (3.4 MHz) mode bit             | 
+                                     |          | `setHighSpeedI2CMode()`                       |
+                                     |   1 - 6  | Not used - cleared by default                 |
+                                     |   0 - 1  | Measurement mode select bits, see             |
+                                     |          | `setMeasurementMode()`                        | */
+
+#define DataRegister 0x03           /*!< Starting address for the data registers, which are, in
+                                         order: `DXRA` (MSB), `DXRB` (LSB), `DZRA` (MSB), 
+                                         `DZRB` (LSB), `DYRA` (MSB), `DYRB` (LSB). */
+#define StatusRegister 0x09         /*!< Register address for the status register, which contains
+                                         the `LOCK` [1] and `RDY` [0]. See `getStatus()`. */
+
+/**@}*/
+
+/** @{ */
+// General constants
+#define HMC_SLEEP_DELAY 7           /*!< Sleep delay in milliseconds (rounded up from 160 Hz) */
+#define HMC_BIAS_XY 1160.0          /*!< Bias applied by the self-test coils along X and Y, in mG */
+#define HMC_BIAS_Z 1080.0           /*!< Bias applied by the self-test coils along Z, in mG */
+/**@}*/
 
 // Gain settings
 #define HMC_GAIN088 0
@@ -72,6 +101,7 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 #define EC_INVALID_OUTRATE 10
 #define EC_INVALID_MEASUREMENT_MODE 11
 #define EC_INVALID_BIAS_MODE 12
+#define EC_INVALID_UFLOAT 13
 
 // Warning codes
 #define WC_X_SATURATED 1
@@ -80,6 +110,7 @@ This code is released under a Creative Commons Attribution 4.0 International lic
 
 
 class HMC5883L {
+    /** HMC5883L 3-axis digital magnetometer class object */
 public:
     HMC5883L();
 
@@ -87,12 +118,19 @@ public:
 
     Vec3<int> readRawValues(uint8_t *saturated=NULL);
     Vec3<float> readScaledValues(uint8_t *saturated=NULL);
+    Vec3<float> readScaledValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0,
+                                       uint32_t delay_time=HMC_SLEEP_DELAY);
     Vec3<float> readCalibratedValues(uint8_t *saturated=NULL);
+    Vec3<float> readCalibratedValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0,
+                                           float delay_time=HMC_SLEEP_DELAY);
 
-    Vec3<float> getCalibration(bool update);
+    Vec3<float> getCalibration(bool update, uint8_t *saturated=NULL, 
+                               uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY);
 
-    Vec3<float> runPosTest(void);
-    Vec3<float> runNegTest(void);
+    Vec3<float> runPosTest(uint8_t *saturated=NULL, uint32_t max_retries=0,
+                           float delay_time=HMC_SLEEP_DELAY);
+    Vec3<float> runNegTest(uint8_t *saturated=NULL, uint32_t max_retries=0,
+                           float delay_time=HMC_SLEEP_DELAY);
 
     uint8_t getStatus(bool *isLocked, bool *isReady);
 
