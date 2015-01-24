@@ -4,5 +4,7 @@ information about the HMC5883L can be found in the [datasheet provided by Honeyw
 The `I2CDevice` library provides an interface between the `HMC5883L` class and Arduino
 microcontrollers, and can be replaced by any equivalent interface to support other interfaces.
 
+Full documentation for this library can be found [here](https://pganssle.github.io/HMC5883L/documentation/).
+
 This code is released under a Creative Commons Attribution 4.0 International license
 ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
