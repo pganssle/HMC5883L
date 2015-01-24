@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['read_5fdata',['read_data',['../class_i2_c_dev.html#a476fc2e973112f3a8ba9e2146d48ade9',1,'I2CDev']]],
-  ['read_5fdata_5fbyte',['read_data_byte',['../class_i2_c_dev.html#a8fa127f78d43967675088fe29e2d8764',1,'I2CDev']]],
-  ['readcalibratedvalues',['readCalibratedValues',['../class_h_m_c5883_l.html#a6cc926cb263a856f4f3f77092d550139',1,'HMC5883L']]],
-  ['readcalibratedvaluessingle',['readCalibratedValuesSingle',['../class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa',1,'HMC5883L']]],
-  ['readrawvalues',['readRawValues',['../class_h_m_c5883_l.html#aef71c4ee9d0a549cb86f6bb90bb238b2',1,'HMC5883L']]],
-  ['readscaledvalues',['readScaledValues',['../class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00',1,'HMC5883L']]],
-  ['readscaledvaluessingle',['readScaledValuesSingle',['../class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889',1,'HMC5883L']]],
-  ['runnegtest',['runNegTest',['../class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5',1,'HMC5883L']]],
-  ['runpostest',['runPosTest',['../class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093',1,'HMC5883L']]]
+  ['ec_5fbad_5fgain_5flevel',['EC_BAD_GAIN_LEVEL',['../group___error_codes.html#ga152836fba63cffc721c652f2afd90166',1,'HMC5883L.h']]],
+  ['ec_5finvalid_5fbias_5fmode',['EC_INVALID_BIAS_MODE',['../group___error_codes.html#ga8d614b9fb1abde4870f56e0d284e5c43',1,'HMC5883L.h']]],
+  ['ec_5finvalid_5fmeasurement_5fmode',['EC_INVALID_MEASUREMENT_MODE',['../group___error_codes.html#gad42b93e29ae1feb1886cd6fed34f029d',1,'HMC5883L.h']]],
+  ['ec_5finvalid_5fnavg',['EC_INVALID_NAVG',['../group___error_codes.html#ga42b9f7389394451cee6febb3dcd8b0a6',1,'HMC5883L.h']]],
+  ['ec_5finvalid_5foutrate',['EC_INVALID_OUTRATE',['../group___error_codes.html#gaf34062d8ff8ae1fa0a057c01dceba5b5',1,'HMC5883L.h']]],
+  ['ec_5finvalid_5fufloat',['EC_INVALID_UFLOAT',['../group___error_codes.html#ga419d094458d892d7439a052bf287932d',1,'HMC5883L.h']]],
+  ['errors_20and_20warnings',['Errors and warnings',['../group___error_codes.html',1,'']]]
 ];

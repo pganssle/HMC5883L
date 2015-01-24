@@ -20,7 +20,7 @@ HMC5883L::HMC5883L() {
 }
 
 const float HMC5883L::outputRates[] = {0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00};
-const float HMC5883L::gainRanges[] = {0.88, 1.30, 1.90, 2.50, 4.00, 4.70, 5.60, 8.10};
+const float HMC5883L::gainRanges[] = {880, 1300, 1900, 2500, 4000, 4700, 5600, 8100};
 const float HMC5883L::gainValues[] = {0.73, 0.92, 1.22, 1.52, 2.27, 2.56, 3.03, 4.35};
 
 uint8_t HMC5883L::initialize(bool noConfig) {
@@ -239,6 +239,9 @@ Vec3<float> HMC5883L::readCalibratedValues(uint8_t *saturated) {
     Makes a call to `readScaledValues()`, then scales the results by the calibration. By default,
     the calibration is (1.0, 1.0, 1.0). Make a call to `getCalibration(true)` to initialize the
     calibration. 
+
+    @param[out] *saturated Warning flags in case any of the channels are saturated. Pass `NULL` if
+                           you don't want to read these out. Default value is `NULL`.
     
     @return Returns the value of `readScaledValues()`, scaled by the calibration, in mG. On error,
             returns (0, 0, 0) and sets the error code.
@@ -282,6 +285,15 @@ Vec3<float> HMC5883L::getCalibration(bool update, uint8_t *saturated,
 
     @param[in] update If evaluates to true, run the calibration and update the cache. Otherwise
                       just returns the cached value.
+    @param[out] *saturated Warning flags in case any of the channels are saturated. Pass `NULL` if
+                           you don't want to read these out. Default value is `NULL`.
+    @param[in] max_retries The maximum number of times to try to read the measurement. Pass 0 if
+                           you don't want to limit the number of retries. Default is 0.
+    @param[in] delay_time  Time to delay before checking whether or not data is ready to be read
+                           from the device (also the repetition delay between checks for whether
+                           data is ready), in milliseconds. The default is `HMC_SLEEP_DELAY`, which
+                           is 7 ms (6.25 ms = 160 Hz, the maximum data output rate of the device, 
+                           rounded up). Any non-negative value is valid.
 
     @return Returns the new calibration value. On error, returns (0, 0, 0) and sets `err_code` to
             the error.

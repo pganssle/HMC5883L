@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['hmc5883l',['HMC5883L',['../class_h_m_c5883_l.html',1,'HMC5883L'],['../class_h_m_c5883_l.html#ab552ed5dd985c500aa37ac11f9ed3eed',1,'HMC5883L::HMC5883L()']]],
-  ['hmc5883l_2ecpp',['HMC5883L.cpp',['../_h_m_c5883_l_8cpp.html',1,'']]],
-  ['hmc5883l_2eh',['HMC5883L.h',['../_h_m_c5883_l_8h.html',1,'']]]
+  ['configregistera',['ConfigRegisterA',['../group___device_addrs.html#ga7c1a102601a1aedb5213d9ec2bdd44d9',1,'HMC5883L.h']]],
+  ['configregisterb',['ConfigRegisterB',['../group___device_addrs.html#ga2c4505b7f511c1459a77fb9ef4793cd9',1,'HMC5883L.h']]]
 ];

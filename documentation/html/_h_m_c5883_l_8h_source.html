@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -69,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('_h_m_c5883_l_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Modules</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,156 +115,111 @@ $(document).ready(function(){initNavTree('_h_m_c5883_l_8h_source.html','');});
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_vec3_8h.html">Vec3.h</a>&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;Wire.h&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// Device addresses</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define HMC5883L_ADDR 0x1E</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define ConfigRegisterA 0x00</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define ConfigRegisterB 0x01</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define ModeRegister 0x02</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define DataRegister 0x03</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define StatusRegister 0x09</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Bias fields in mG</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define HMC_BIAS_XY 1160.0</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define HMC_BIAS_Z 1080.0</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Gain settings</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define HMC_GAIN088 0</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define HMC_GAIN130 1</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define HMC_GAIN190 2</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define HMC_GAIN250 3</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define HMC_GAIN400 4</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define HMC_GAIN470 5</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define HMC_GAIN560 6</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define HMC_GAIN810 7</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// Measurement modes</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define HMC_AVG1 0</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define HMC_AVG2 1</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define HMC_AVG4 2</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define HMC_AVG8 3</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// Output rates</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define HMC_RATE0075 0</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#define HMC_RATE0150 1</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#define HMC_RATE0300 2</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define HMC_RATE0750 3</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define HMC_RATE1500 4</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define HMC_RATE3000 5</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define HMC_RATE7500 6</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// Measurement modes</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define HMC_MeasurementContinuous 0</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#define HMC_MeasurementSingle 1</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define HMC_MeasurementIdle 2</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// Bias modes</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define HMC_BIAS_NONE 0</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define HMC_BIAS_POSITIVE 1</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define HMC_BIAS_NEGATIVE 2</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// General constants</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define HMC_SLEEP_DELAY 7           // Sleep delay in milliseconds (rounded up from 160 Hz)</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// Error codes</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define EC_BAD_GAIN_LEVEL 8</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#define EC_INVALID_NAVG 9</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#define EC_INVALID_OUTRATE 10</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#define EC_INVALID_MEASUREMENT_MODE 11</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#define EC_INVALID_BIAS_MODE 12</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define EC_INVALID_UFLOAT 13</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// Warning codes</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define WC_X_SATURATED 1</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define WC_Y_SATURATED 2</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define WC_Z_SATURATED 4</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_h_m_c5883_l.html">   85</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_h_m_c5883_l.html">HMC5883L</a> {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="class_h_m_c5883_l.html#ab552ed5dd985c500aa37ac11f9ed3eed">HMC5883L</a>();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#adce69beed189b56b294775e273768b87">initialize</a>(<span class="keywordtype">bool</span> noConfig=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;int&gt;</a> <a class="code" href="class_h_m_c5883_l.html#aef71c4ee9d0a549cb86f6bb90bb238b2">readRawValues</a>(uint8_t *saturated=NULL);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00">readScaledValues</a>(uint8_t *saturated=NULL);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889">readScaledValuesSingle</a>(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                       uint32_t delay_time=HMC_SLEEP_DELAY);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#a6cc926cb263a856f4f3f77092d550139">readCalibratedValues</a>(uint8_t *saturated=NULL);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa">readCalibratedValuesSingle</a>(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                                           <span class="keywordtype">float</span> delay_time=HMC_SLEEP_DELAY);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#afe8557a9869b1b8be968db2eb26eb373">getCalibration</a>(<span class="keywordtype">bool</span> update, uint8_t *saturated=NULL, </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                               uint32_t max_retries=0, <span class="keywordtype">float</span> delay_time=HMC_SLEEP_DELAY);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093">runPosTest</a>(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                           <span class="keywordtype">float</span> delay_time=HMC_SLEEP_DELAY);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> <a class="code" href="class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5">runNegTest</a>(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                           <span class="keywordtype">float</span> delay_time=HMC_SLEEP_DELAY);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#ad68af7d6a31a0ab313c6aa887512f861">getStatus</a>(<span class="keywordtype">bool</span> *isLocked, <span class="keywordtype">bool</span> *isReady);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#ac5d70ea9d043a7829d3410b6ed42d72d">setGain</a>(uint8_t gain_level);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#aed6ab6cfe07eafee7d99012dc092e41d">setAveragingRate</a>(uint8_t avg_rate);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a5c4eda2a75638936d50b25484b96147f">setOutputRate</a>(uint8_t out_rate);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a6d584d734dfe62dad7ac7e32174285e9">setMeasurementMode</a>(uint8_t mode);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#af5b858a870f8f961d5540a18393eabf0">setBiasMode</a>(uint8_t mode);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a44596be4b636171ac21f3b80a6f46ee0">setHighSpeedI2CMode</a>(<span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#aec9eb6926b5f7461abbad1a63943071f">getGain</a>(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a6652a9c55333f6fd2aac541f57a692fc">getAveragingRate</a>(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a2106f4efb55ac430b77b72485b9e57d6">getOutputRate</a>(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a4c29ddea7f0e5e142054944cfdae0ed5">getMeasurementMode</a>(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    uint8_t <a class="code" href="class_h_m_c5883_l.html#a3dee47519218c6d46c8c1c3121c5948b">getBiasMode</a>(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    uint8_t get_error_code(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> outputRates[];</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> gainRanges[];</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="class_i2_c_dev.html">I2CDev</a> I2CDevice;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> calibration;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    uint8_t gain;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    uint8_t averagingRate;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    uint8_t outputRate;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    uint8_t measurementMode;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    uint8_t biasMode;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    uint8_t err_code;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> gainValues[];</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;};</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a4c29ddea7f0e5e142054944cfdae0ed5"><div class="ttname"><a href="class_h_m_c5883_l.html#a4c29ddea7f0e5e142054944cfdae0ed5">HMC5883L::getMeasurementMode</a></div><div class="ttdeci">uint8_t getMeasurementMode(bool updateCache=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:697</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a5c4eda2a75638936d50b25484b96147f"><div class="ttname"><a href="class_h_m_c5883_l.html#a5c4eda2a75638936d50b25484b96147f">HMC5883L::setOutputRate</a></div><div class="ttdeci">uint8_t setOutputRate(uint8_t out_rate)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:480</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_ac270d4672e1e0ed759ee07a504f2ab00"><div class="ttname"><a href="class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00">HMC5883L::readScaledValues</a></div><div class="ttdeci">Vec3&lt; float &gt; readScaledValues(uint8_t *saturated=NULL)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:148</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_ab552ed5dd985c500aa37ac11f9ed3eed"><div class="ttname"><a href="class_h_m_c5883_l.html#ab552ed5dd985c500aa37ac11f9ed3eed">HMC5883L::HMC5883L</a></div><div class="ttdeci">HMC5883L()</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:17</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a6285036cc2d7c6f320b5eda766cf71e5"><div class="ttname"><a href="class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5">HMC5883L::runNegTest</a></div><div class="ttdeci">Vec3&lt; float &gt; runNegTest(uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:344</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_adce69beed189b56b294775e273768b87"><div class="ttname"><a href="class_h_m_c5883_l.html#adce69beed189b56b294775e273768b87">HMC5883L::initialize</a></div><div class="ttdeci">uint8_t initialize(bool noConfig=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:26</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_acfb30a00675cd4a71809b103b06edfaa"><div class="ttname"><a href="class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa">HMC5883L::readCalibratedValuesSingle</a></div><div class="ttdeci">Vec3&lt; float &gt; readCalibratedValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:251</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a6652a9c55333f6fd2aac541f57a692fc"><div class="ttname"><a href="class_h_m_c5883_l.html#a6652a9c55333f6fd2aac541f57a692fc">HMC5883L::getAveragingRate</a></div><div class="ttdeci">uint8_t getAveragingRate(bool updateCache=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:645</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a2106f4efb55ac430b77b72485b9e57d6"><div class="ttname"><a href="class_h_m_c5883_l.html#a2106f4efb55ac430b77b72485b9e57d6">HMC5883L::getOutputRate</a></div><div class="ttdeci">uint8_t getOutputRate(bool updateCache=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:671</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_aef71c4ee9d0a549cb86f6bb90bb238b2"><div class="ttname"><a href="class_h_m_c5883_l.html#aef71c4ee9d0a549cb86f6bb90bb238b2">HMC5883L::readRawValues</a></div><div class="ttdeci">Vec3&lt; int &gt; readRawValues(uint8_t *saturated=NULL)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:111</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a041550377640f94f3d78cac70a781093"><div class="ttname"><a href="class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093">HMC5883L::runPosTest</a></div><div class="ttdeci">Vec3&lt; float &gt; runPosTest(uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:313</div></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="group___device_addrs.html#gaf476bf33d389e5fc597d87cac399088d">   21</a></span>&#160;<span class="preprocessor">#define HMC5883L_ADDR 0x1E          </span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="group___device_addrs.html#ga7c1a102601a1aedb5213d9ec2bdd44d9">   23</a></span>&#160;<span class="preprocessor">#define ConfigRegisterA 0x00        </span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define ConfigRegisterB 0x01        </span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define ModeRegister 0x02           </span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define DataRegister 0x03           </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define StatusRegister 0x09         </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define HMC_SLEEP_DELAY 7           </span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define HMC_BIAS_XY 1160.0          </span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define HMC_BIAS_Z 1080.0           </span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define HMC_GAIN088 0   </span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define HMC_GAIN130 1   </span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define HMC_GAIN190 2   </span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define HMC_GAIN250 3   </span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">   73</a></span>&#160;<span class="preprocessor">#define HMC_GAIN400 4   </span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group___general_constants.html#ga1c6efa9689c426e25ae1f2467430b876">   74</a></span>&#160;<span class="preprocessor">#define HMC_GAIN470 5   </span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group___general_constants.html#gacea61ca68e8efbad8a0f398051b84e29">   75</a></span>&#160;<span class="preprocessor">#define HMC_GAIN560 6   </span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#define HMC_GAIN810 7   </span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define HMC_AVG1 0  </span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define HMC_AVG2 1  </span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define HMC_AVG4 2  </span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group___gain_settings.html#gaf207890e6273b1f15a84e8b142157da7">   87</a></span>&#160;<span class="preprocessor">#define HMC_AVG8 3  </span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group___gain_settings.html#ga8c832d026fc407263418262ecfe65650">   94</a></span>&#160;<span class="preprocessor">#define HMC_RATE0075 0 </span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define HMC_RATE0150 1 </span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#define HMC_RATE0300 2 </span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define HMC_RATE0750 3 </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#define HMC_RATE1500 4 </span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define HMC_RATE3000 5 </span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#define HMC_RATE7500 6 </span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define HMC_MeasurementContinuous 0     </span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define HMC_MeasurementSingle 1         </span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define HMC_MeasurementIdle 2           </span></div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="group___output_rates.html#ga62ff19009f045af134f564d02cffd949">  116</a></span>&#160;<span class="preprocessor">#define HMC_BIAS_NONE 0         </span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group___output_rates.html#gabbd5b14499978b6c734e8748dd85b225">  117</a></span>&#160;<span class="preprocessor">#define HMC_BIAS_POSITIVE 1     </span></div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group___output_rates.html#gaf1bf8b774c443c87d5609dcba5f690bf">  118</a></span>&#160;<span class="preprocessor">#define HMC_BIAS_NEGATIVE 2     </span></div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="group___measurement_modes.html#gabb966e3ff4f28a70ad9dafba0c76ad26">  125</a></span>&#160;<span class="preprocessor">#define EC_BAD_GAIN_LEVEL 8                 </span></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group___measurement_modes.html#ga5282c8c798f223eb17c9adceb460dac9">  126</a></span>&#160;<span class="preprocessor">#define EC_INVALID_NAVG 9                   </span></div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="group___measurement_modes.html#ga84a5c60197f92dd71fe1419740dbf7e2">  127</a></span>&#160;<span class="preprocessor">#define EC_INVALID_OUTRATE 10               </span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#define EC_INVALID_MEASUREMENT_MODE 11      </span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define EC_INVALID_BIAS_MODE 12             </span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#define EC_INVALID_UFLOAT 13                </span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#define WC_X_SATURATED 1    </span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#define WC_Y_SATURATED 2    </span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#define WC_Z_SATURATED 4    </span></div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="group___error_codes.html#gaf34062d8ff8ae1fa0a057c01dceba5b5">  145</a></span>&#160;<span class="preprocessor">class HMC5883L {</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group___error_codes.html#gad42b93e29ae1feb1886cd6fed34f029d">  146</a></span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group___error_codes.html#ga8d614b9fb1abde4870f56e0d284e5c43">  147</a></span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group___error_codes.html#ga419d094458d892d7439a052bf287932d">  148</a></span>&#160;    <a class="code" href="class_h_m_c5883_l.html">HMC5883L</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    uint8_t initialize(<span class="keywordtype">bool</span> noConfig=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;int&gt;</a> readRawValues(uint8_t *saturated=NULL);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> readScaledValues(uint8_t *saturated=NULL);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> readScaledValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                                       uint32_t delay_time=<a class="code" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> readCalibratedValues(uint8_t *saturated=NULL);</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group___saturation_warning_codes.html#ga74e435d4abf3a4e6687f614980e62de3">  157</a></span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> readCalibratedValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="group___saturation_warning_codes.html#ga30ebd8715fb9bae137aa0d08c6e397af">  158</a></span>&#160;                                           <span class="keywordtype">float</span> delay_time=<a class="code" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>);</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="group___saturation_warning_codes.html#gaf2fae70fdd5d89214f38c4cf23292d8a">  159</a></span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> getCalibration(<span class="keywordtype">bool</span> update, uint8_t *saturated=NULL, </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                               uint32_t max_retries=0, <span class="keywordtype">float</span> delay_time=<a class="code" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="class_h_m_c5883_l.html">  163</a></span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> runPosTest(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                           <span class="keywordtype">float</span> delay_time=<a class="code" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> runNegTest(uint8_t *saturated=NULL, uint32_t max_retries=0,</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                           <span class="keywordtype">float</span> delay_time=<a class="code" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    uint8_t getStatus(<span class="keywordtype">bool</span> *isLocked, <span class="keywordtype">bool</span> *isReady);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    uint8_t setGain(uint8_t gain_level);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    uint8_t setAveragingRate(uint8_t avg_rate);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    uint8_t setOutputRate(uint8_t out_rate);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    uint8_t setMeasurementMode(uint8_t mode);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    uint8_t setBiasMode(uint8_t mode);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    uint8_t setHighSpeedI2CMode(<span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    uint8_t getGain(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    uint8_t getAveragingRate(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    uint8_t getOutputRate(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    uint8_t getMeasurementMode(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    uint8_t getBiasMode(<span class="keywordtype">bool</span> updateCache=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    uint8_t get_error_code(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> outputRates[];  </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> gainRanges[];   </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="class_i2_c_dev.html">I2CDev</a> I2CDevice;                  </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="struct_vec3.html">Vec3&lt;float&gt;</a> calibration;           </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    uint8_t gain;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    uint8_t averagingRate;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    uint8_t outputRate;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    uint8_t measurementMode;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    uint8_t biasMode;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    uint8_t err_code;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> gainValues[];</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;};</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="class_h_m_c5883_l.html#ab3b98b1bbed0b767df657ce0a6630adc">  203</a></span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="_vec3_8h_html"><div class="ttname"><a href="_vec3_8h.html">Vec3.h</a></div><div class="ttdoc">Definition for template class Vec3, which holds 3D Cartesian vectors. </div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a44596be4b636171ac21f3b80a6f46ee0"><div class="ttname"><a href="class_h_m_c5883_l.html#a44596be4b636171ac21f3b80a6f46ee0">HMC5883L::setHighSpeedI2CMode</a></div><div class="ttdeci">uint8_t setHighSpeedI2CMode(bool enabled)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:601</div></div>
 <div class="ttc" id="struct_vec3_html"><div class="ttname"><a href="struct_vec3.html">Vec3</a></div><div class="ttdef"><b>Definition:</b> Vec3.h:8</div></div>
+<div class="ttc" id="group___general_constants_html_ga26afbcf737f1add055ea8929c03648a9"><div class="ttname"><a href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></div><div class="ttdeci">#define HMC_SLEEP_DELAY</div><div class="ttdef"><b>Definition:</b> HMC5883L.h:73</div></div>
 <div class="ttc" id="_i2_c_dev_8h_html"><div class="ttname"><a href="_i2_c_dev_8h.html">I2CDev.h</a></div><div class="ttdoc">Library for reading and writing to and from registers on I2C devices. </div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_aec9eb6926b5f7461abbad1a63943071f"><div class="ttname"><a href="class_h_m_c5883_l.html#aec9eb6926b5f7461abbad1a63943071f">HMC5883L::getGain</a></div><div class="ttdeci">uint8_t getGain(bool updateCache=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:621</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_aed6ab6cfe07eafee7d99012dc092e41d"><div class="ttname"><a href="class_h_m_c5883_l.html#aed6ab6cfe07eafee7d99012dc092e41d">HMC5883L::setAveragingRate</a></div><div class="ttdeci">uint8_t setAveragingRate(uint8_t avg_rate)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:439</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html"><div class="ttname"><a href="class_h_m_c5883_l.html">HMC5883L</a></div><div class="ttdef"><b>Definition:</b> HMC5883L.h:85</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a6cc926cb263a856f4f3f77092d550139"><div class="ttname"><a href="class_h_m_c5883_l.html#a6cc926cb263a856f4f3f77092d550139">HMC5883L::readCalibratedValues</a></div><div class="ttdeci">Vec3&lt; float &gt; readCalibratedValues(uint8_t *saturated=NULL)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:236</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a3dee47519218c6d46c8c1c3121c5948b"><div class="ttname"><a href="class_h_m_c5883_l.html#a3dee47519218c6d46c8c1c3121c5948b">HMC5883L::getBiasMode</a></div><div class="ttdeci">uint8_t getBiasMode(bool updateCache=false)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:722</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a6d584d734dfe62dad7ac7e32174285e9"><div class="ttname"><a href="class_h_m_c5883_l.html#a6d584d734dfe62dad7ac7e32174285e9">HMC5883L::setMeasurementMode</a></div><div class="ttdeci">uint8_t setMeasurementMode(uint8_t mode)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:523</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_ad68af7d6a31a0ab313c6aa887512f861"><div class="ttname"><a href="class_h_m_c5883_l.html#ad68af7d6a31a0ab313c6aa887512f861">HMC5883L::getStatus</a></div><div class="ttdeci">uint8_t getStatus(bool *isLocked, bool *isReady)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:375</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_a16828549ee509bb4fa8a3995424c8889"><div class="ttname"><a href="class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889">HMC5883L::readScaledValuesSingle</a></div><div class="ttdeci">Vec3&lt; float &gt; readScaledValuesSingle(uint8_t *saturated=NULL, uint32_t max_retries=0, uint32_t delay_time=HMC_SLEEP_DELAY)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:172</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_af5b858a870f8f961d5540a18393eabf0"><div class="ttname"><a href="class_h_m_c5883_l.html#af5b858a870f8f961d5540a18393eabf0">HMC5883L::setBiasMode</a></div><div class="ttdeci">uint8_t setBiasMode(uint8_t mode)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:559</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_ac5d70ea9d043a7829d3410b6ed42d72d"><div class="ttname"><a href="class_h_m_c5883_l.html#ac5d70ea9d043a7829d3410b6ed42d72d">HMC5883L::setGain</a></div><div class="ttdeci">uint8_t setGain(uint8_t gain_level)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:397</div></div>
-<div class="ttc" id="class_h_m_c5883_l_html_afe8557a9869b1b8be968db2eb26eb373"><div class="ttname"><a href="class_h_m_c5883_l.html#afe8557a9869b1b8be968db2eb26eb373">HMC5883L::getCalibration</a></div><div class="ttdeci">Vec3&lt; float &gt; getCalibration(bool update, uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</div><div class="ttdef"><b>Definition:</b> HMC5883L.cpp:277</div></div>
+<div class="ttc" id="class_h_m_c5883_l_html"><div class="ttname"><a href="class_h_m_c5883_l.html">HMC5883L</a></div><div class="ttdef"><b>Definition:</b> HMC5883L.h:163</div></div>
 <div class="ttc" id="class_i2_c_dev_html"><div class="ttname"><a href="class_i2_c_dev.html">I2CDev</a></div><div class="ttdef"><b>Definition:</b> I2CDev.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -270,7 +227,7 @@ $(document).ready(function(){initNavTree('_h_m_c5883_l_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_h_m_c5883_l_8h.html">HMC5883L.h</a></li>
-    <li class="footer">Generated on Sat Jan 24 2015 12:30:27 for HMC5883L by
+    <li class="footer">Generated on Sat Jan 24 2015 14:09:30 for HMC5883L by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

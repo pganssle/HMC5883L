@@ -1,0 +1,63 @@
+\hypertarget{group___device_addrs}{\section{Device addresses}
+\label{group___device_addrs}\index{Device addresses@{Device addresses}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___device_addrs_gaf476bf33d389e5fc597d87cac399088d}{H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R}~0x1\+E
+\item 
+\#define \hyperlink{group___device_addrs_ga7c1a102601a1aedb5213d9ec2bdd44d9}{Config\+Register\+A}~0x00
+\item 
+\#define \hyperlink{group___device_addrs_ga2c4505b7f511c1459a77fb9ef4793cd9}{Config\+Register\+B}~0x01
+\item 
+\#define \hyperlink{group___device_addrs_ga588e30fd18c31816cde04b8e3b3adf15}{Mode\+Register}~0x02
+\item 
+\#define \hyperlink{group___device_addrs_gae3e06eef67a36f80ad1fbdbac2049809}{Data\+Register}~0x03
+\item 
+\#define \hyperlink{group___device_addrs_gacda516aca361386a87975a62eba267d7}{Status\+Register}~0x09
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group___device_addrs_ga7c1a102601a1aedb5213d9ec2bdd44d9}{\index{Device addresses@{Device addresses}!Config\+Register\+A@{Config\+Register\+A}}
+\index{Config\+Register\+A@{Config\+Register\+A}!Device addresses@{Device addresses}}
+\subsubsection[{Config\+Register\+A}]{\setlength{\rightskip}{0pt plus 5cm}\#define Config\+Register\+A~0x00}}\label{group___device_addrs_ga7c1a102601a1aedb5213d9ec2bdd44d9}
+Register address for Config Register A, which contains\+: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Location }&{\bf Description  }\\\cline{1-2}
+\PBS\centering 5 -\/ 6 &Number of samples averaged, see {\ttfamily \hyperlink{class_h_m_c5883_l_aed6ab6cfe07eafee7d99012dc092e41d}{H\+M\+C5883\+L\+::set\+Averaging\+Rate()}} \\\cline{1-2}
+\PBS\centering 2 -\/ 4 &Data output rate, see {\ttfamily \hyperlink{class_h_m_c5883_l_a5c4eda2a75638936d50b25484b96147f}{H\+M\+C5883\+L\+::set\+Output\+Rate()}} \\\cline{1-2}
+\PBS\centering 0 -\/ 1 &Bias measurement register, see {\ttfamily \hyperlink{class_h_m_c5883_l_af5b858a870f8f961d5540a18393eabf0}{H\+M\+C5883\+L\+::set\+Bias\+Mode()}} \\\cline{1-2}
+\end{TabularC}
+\hypertarget{group___device_addrs_ga2c4505b7f511c1459a77fb9ef4793cd9}{\index{Device addresses@{Device addresses}!Config\+Register\+B@{Config\+Register\+B}}
+\index{Config\+Register\+B@{Config\+Register\+B}!Device addresses@{Device addresses}}
+\subsubsection[{Config\+Register\+B}]{\setlength{\rightskip}{0pt plus 5cm}\#define Config\+Register\+B~0x01}}\label{group___device_addrs_ga2c4505b7f511c1459a77fb9ef4793cd9}
+Register address for Config Register A, which contains\+: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Location }&{\bf Description  }\\\cline{1-2}
+\PBS\centering 5 -\/ 7 &Gain configuration, see {\ttfamily \hyperlink{class_h_m_c5883_l_ac5d70ea9d043a7829d3410b6ed42d72d}{H\+M\+C5883\+L\+::set\+Gain()}} \\\cline{1-2}
+\PBS\centering 0 -\/ 4 &Not used -\/ must be cleared for proper operation \\\cline{1-2}
+\end{TabularC}
+\hypertarget{group___device_addrs_gae3e06eef67a36f80ad1fbdbac2049809}{\index{Device addresses@{Device addresses}!Data\+Register@{Data\+Register}}
+\index{Data\+Register@{Data\+Register}!Device addresses@{Device addresses}}
+\subsubsection[{Data\+Register}]{\setlength{\rightskip}{0pt plus 5cm}\#define Data\+Register~0x03}}\label{group___device_addrs_gae3e06eef67a36f80ad1fbdbac2049809}
+Starting address for the data registers, which are, in order\+: {\ttfamily D\+X\+R\+A} (M\+S\+B), {\ttfamily D\+X\+R\+B} (L\+S\+B), {\ttfamily D\+Z\+R\+A} (M\+S\+B), {\ttfamily D\+Z\+R\+B} (L\+S\+B), {\ttfamily D\+Y\+R\+A} (M\+S\+B), {\ttfamily D\+Y\+R\+B} (L\+S\+B). \hypertarget{group___device_addrs_gaf476bf33d389e5fc597d87cac399088d}{\index{Device addresses@{Device addresses}!H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R@{H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R}}
+\index{H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R@{H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R}!Device addresses@{Device addresses}}
+\subsubsection[{H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+M\+C5883\+L\+\_\+\+A\+D\+D\+R~0x1\+E}}\label{group___device_addrs_gaf476bf33d389e5fc597d87cac399088d}
+The I2\+C address of all \hyperlink{class_h_m_c5883_l}{H\+M\+C5883\+L} digital magnetometers \hypertarget{group___device_addrs_ga588e30fd18c31816cde04b8e3b3adf15}{\index{Device addresses@{Device addresses}!Mode\+Register@{Mode\+Register}}
+\index{Mode\+Register@{Mode\+Register}!Device addresses@{Device addresses}}
+\subsubsection[{Mode\+Register}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mode\+Register~0x02}}\label{group___device_addrs_ga588e30fd18c31816cde04b8e3b3adf15}
+Register address for the mode register, which contains\+: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Location }&{\bf Description  }\\\cline{1-2}
+\PBS\centering 7 &High speed I2\+C mode bit, see {\ttfamily \hyperlink{class_h_m_c5883_l_a44596be4b636171ac21f3b80a6f46ee0}{H\+M\+C5883\+L\+::set\+High\+Speed\+I2\+C\+Mode()}} \\\cline{1-2}
+\PBS\centering 1 -\/ 6 &Not used -\/ cleared by default \\\cline{1-2}
+\PBS\centering 0 -\/ 1 &Measurement mode select bits, see {\ttfamily \hyperlink{class_h_m_c5883_l_a6d584d734dfe62dad7ac7e32174285e9}{H\+M\+C5883\+L\+::set\+Measurement\+Mode()}} \\\cline{1-2}
+\end{TabularC}
+\hypertarget{group___device_addrs_gacda516aca361386a87975a62eba267d7}{\index{Device addresses@{Device addresses}!Status\+Register@{Status\+Register}}
+\index{Status\+Register@{Status\+Register}!Device addresses@{Device addresses}}
+\subsubsection[{Status\+Register}]{\setlength{\rightskip}{0pt plus 5cm}\#define Status\+Register~0x09}}\label{group___device_addrs_gacda516aca361386a87975a62eba267d7}
+Register address for the status register, which contains the {\ttfamily L\+O\+C\+K} \mbox{[}1\mbox{]} and {\ttfamily R\+D\+Y} \mbox{[}0\mbox{]}. See {\ttfamily get\+Status()}. 

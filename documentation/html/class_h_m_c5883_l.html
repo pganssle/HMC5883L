@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_h_m_c5883_l.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Modules</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,6 +116,7 @@ $(document).ready(function(){initNavTree('class_h_m_c5883_l.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab552ed5dd985c500aa37ac11f9ed3eed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#ab552ed5dd985c500aa37ac11f9ed3eed">HMC5883L</a> ()</td></tr>
+<tr class="memdesc:ab552ed5dd985c500aa37ac11f9ed3eed"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_h_m_c5883_l.html">HMC5883L</a> 3-axis digital magnetometer class object.  <a href="#ab552ed5dd985c500aa37ac11f9ed3eed">More...</a><br /></td></tr>
 <tr class="separator:ab552ed5dd985c500aa37ac11f9ed3eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adce69beed189b56b294775e273768b87"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#adce69beed189b56b294775e273768b87">initialize</a> (bool noConfig=false)</td></tr>
 <tr class="separator:adce69beed189b56b294775e273768b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,17 +124,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aef71c4ee9d0a549cb86f6bb90bb238b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac270d4672e1e0ed759ee07a504f2ab00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00">readScaledValues</a> (uint8_t *saturated=NULL)</td></tr>
 <tr class="separator:ac270d4672e1e0ed759ee07a504f2ab00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16828549ee509bb4fa8a3995424c8889"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889">readScaledValuesSingle</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, uint32_t delay_time=HMC_SLEEP_DELAY)</td></tr>
+<tr class="memitem:a16828549ee509bb4fa8a3995424c8889"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889">readScaledValuesSingle</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, uint32_t delay_time=<a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>)</td></tr>
 <tr class="separator:a16828549ee509bb4fa8a3995424c8889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc926cb263a856f4f3f77092d550139"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a6cc926cb263a856f4f3f77092d550139">readCalibratedValues</a> (uint8_t *saturated=NULL)</td></tr>
 <tr class="separator:a6cc926cb263a856f4f3f77092d550139"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfb30a00675cd4a71809b103b06edfaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa">readCalibratedValuesSingle</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</td></tr>
+<tr class="memitem:acfb30a00675cd4a71809b103b06edfaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa">readCalibratedValuesSingle</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=<a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>)</td></tr>
 <tr class="separator:acfb30a00675cd4a71809b103b06edfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe8557a9869b1b8be968db2eb26eb373"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#afe8557a9869b1b8be968db2eb26eb373">getCalibration</a> (bool update, uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</td></tr>
+<tr class="memitem:afe8557a9869b1b8be968db2eb26eb373"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#afe8557a9869b1b8be968db2eb26eb373">getCalibration</a> (bool update, uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=<a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>)</td></tr>
 <tr class="separator:afe8557a9869b1b8be968db2eb26eb373"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a041550377640f94f3d78cac70a781093"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093">runPosTest</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</td></tr>
+<tr class="memitem:a041550377640f94f3d78cac70a781093"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093">runPosTest</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=<a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>)</td></tr>
 <tr class="separator:a041550377640f94f3d78cac70a781093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6285036cc2d7c6f320b5eda766cf71e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5">runNegTest</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=HMC_SLEEP_DELAY)</td></tr>
+<tr class="memitem:a6285036cc2d7c6f320b5eda766cf71e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vec3.html">Vec3</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5">runNegTest</a> (uint8_t *saturated=NULL, uint32_t max_retries=0, float delay_time=<a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a>)</td></tr>
 <tr class="separator:a6285036cc2d7c6f320b5eda766cf71e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad68af7d6a31a0ab313c6aa887512f861"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#ad68af7d6a31a0ab313c6aa887512f861">getStatus</a> (bool *isLocked, bool *isReady)</td></tr>
 <tr class="separator:ad68af7d6a31a0ab313c6aa887512f861"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,11 +166,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_error_code</b>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab3b98b1bbed0b767df657ce0a6630adc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3b98b1bbed0b767df657ce0a6630adc"></a>
-static const float&#160;</td><td class="memItemRight" valign="bottom"><b>outputRates</b> [] = {0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00}</td></tr>
+<tr class="memitem:ab3b98b1bbed0b767df657ce0a6630adc"><td class="memItemLeft" align="right" valign="top">static const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#ab3b98b1bbed0b767df657ce0a6630adc">outputRates</a> [] = {0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00}</td></tr>
 <tr class="separator:ab3b98b1bbed0b767df657ce0a6630adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a631541baef14a0c965430a685ca14504"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a631541baef14a0c965430a685ca14504"></a>
-static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRanges</b> [] = {0.88, 1.30, 1.90, 2.50, 4.00, 4.70, 5.60, 8.10}</td></tr>
+<tr class="memitem:a631541baef14a0c965430a685ca14504"><td class="memItemLeft" align="right" valign="top">static const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_m_c5883_l.html#a631541baef14a0c965430a685ca14504">gainRanges</a> [] = {880, 1300, 1900, 2500, 4000, 4700, 5600, 8100}</td></tr>
 <tr class="separator:a631541baef14a0c965430a685ca14504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -184,6 +184,8 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_h_m_c5883_l.html">HMC5883L</a> 3-axis digital magnetometer class object. </p>
 <p>Constructor for <a class="el" href="class_h_m_c5883_l.html">HMC5883L</a> compass / magnetometer class. </p>
 
 </div>
@@ -265,7 +267,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>delay_time</em> = <code>HMC_SLEEP_DELAY</code>&#160;</td>
+          <td class="paramname"><em>delay_time</em> = <code><a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -278,7 +280,10 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
 <p>Runs <code><a class="el" href="class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093">runPosTest()</a></code>, then <code><a class="el" href="class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5">runNegTest()</a></code> and averages the values, and sets the calibration.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">update</td><td>If evaluates to true, run the calibration and update the cache. Otherwise just returns the cached value.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">update</td><td>If evaluates to true, run the calibration and update the cache. Otherwise just returns the cached value. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*saturated</td><td>Warning flags in case any of the channels are saturated. Pass <code>NULL</code> if you don't want to read these out. Default value is <code>NULL</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_retries</td><td>The maximum number of times to try to read the measurement. Pass 0 if you don't want to limit the number of retries. Default is 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">delay_time</td><td>Time to delay before checking whether or not data is ready to be read from the device (also the repetition delay between checks for whether data is ready), in milliseconds. The default is <code>HMC_SLEEP_DELAY</code>, which is 7 ms (6.25 ms = 160 Hz, the maximum data output rate of the device, rounded up). Any non-negative value is valid.</td></tr>
   </table>
   </dd>
 </dl>
@@ -451,6 +456,12 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
 </div><div class="memdoc">
 <p>Return the field vector, scaled by the calibration, in milliGauss.</p>
 <p>Makes a call to <code><a class="el" href="class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00">readScaledValues()</a></code>, then scales the results by the calibration. By default, the calibration is (1.0, 1.0, 1.0). Make a call to <code>getCalibration(true)</code> to initialize the calibration.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">*saturated</td><td>Warning flags in case any of the channels are saturated. Pass <code>NULL</code> if you don't want to read these out. Default value is <code>NULL</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the value of <code><a class="el" href="class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00">readScaledValues()</a></code>, scaled by the calibration, in mG. On error, returns (0, 0, 0) and sets the error code.</dd></dl>
 
 </div>
@@ -475,7 +486,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>delay_time</em> = <code>HMC_SLEEP_DELAY</code>&#160;</td>
+          <td class="paramname"><em>delay_time</em> = <code><a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -568,7 +579,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>delay_time</em> = <code>HMC_SLEEP_DELAY</code>&#160;</td>
+          <td class="paramname"><em>delay_time</em> = <code><a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -611,7 +622,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>delay_time</em> = <code>HMC_SLEEP_DELAY</code>&#160;</td>
+          <td class="paramname"><em>delay_time</em> = <code><a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -646,7 +657,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>delay_time</em> = <code>HMC_SLEEP_DELAY</code>&#160;</td>
+          <td class="paramname"><em>delay_time</em> = <code><a class="el" href="group___general_constants.html#ga26afbcf737f1add055ea8929c03648a9">HMC_SLEEP_DELAY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -877,6 +888,49 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a631541baef14a0c965430a685ca14504"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float HMC5883L::gainRanges = {880, 1300, 1900, 2500, 4000, 4700, 5600, 8100}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Saturation ranges in mG. See <a class="el" href="group___gain_settings.html">Gain settings</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="ab3b98b1bbed0b767df657ce0a6630adc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float HMC5883L::outputRates = {0.75, 1.50, 3.00, 7.50, 15.00, 30.00, 75.00}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Output rates in Hz (see <a class="el" href="group___output_rates.html">Output rate settings</a>). </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_h_m_c5883_l_8h_source.html">HMC5883L.h</a></li>
 <li><a class="el" href="_h_m_c5883_l_8cpp.html">HMC5883L.cpp</a></li>
@@ -887,7 +941,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>gainRan
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_h_m_c5883_l.html">HMC5883L</a></li>
-    <li class="footer">Generated on Sat Jan 24 2015 12:30:27 for HMC5883L by
+    <li class="footer">Generated on Sat Jan 24 2015 14:09:30 for HMC5883L by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

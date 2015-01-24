@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['../struct_vec3.html#aeba95c52e15a5a7476550c1798210db2',1,'Vec3']]]
+  ['gainranges',['gainRanges',['../class_h_m_c5883_l.html#a631541baef14a0c965430a685ca14504',1,'HMC5883L']]]
 ];
