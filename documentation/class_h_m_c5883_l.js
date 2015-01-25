@@ -1,0 +1,26 @@
+var class_h_m_c5883_l =
+[
+    [ "HMC5883L", "class_h_m_c5883_l.html#ab552ed5dd985c500aa37ac11f9ed3eed", null ],
+    [ "get_error_code", "class_h_m_c5883_l.html#a1f5045a220b5ed476f8eb38915c6571a", null ],
+    [ "getAveragingRate", "class_h_m_c5883_l.html#a6652a9c55333f6fd2aac541f57a692fc", null ],
+    [ "getBiasMode", "class_h_m_c5883_l.html#a3dee47519218c6d46c8c1c3121c5948b", null ],
+    [ "getCalibration", "class_h_m_c5883_l.html#afe8557a9869b1b8be968db2eb26eb373", null ],
+    [ "getGain", "class_h_m_c5883_l.html#aec9eb6926b5f7461abbad1a63943071f", null ],
+    [ "getMeasurementMode", "class_h_m_c5883_l.html#a4c29ddea7f0e5e142054944cfdae0ed5", null ],
+    [ "getOutputRate", "class_h_m_c5883_l.html#a2106f4efb55ac430b77b72485b9e57d6", null ],
+    [ "getStatus", "class_h_m_c5883_l.html#ad68af7d6a31a0ab313c6aa887512f861", null ],
+    [ "initialize", "class_h_m_c5883_l.html#adce69beed189b56b294775e273768b87", null ],
+    [ "readCalibratedValues", "class_h_m_c5883_l.html#a6cc926cb263a856f4f3f77092d550139", null ],
+    [ "readCalibratedValuesSingle", "class_h_m_c5883_l.html#acfb30a00675cd4a71809b103b06edfaa", null ],
+    [ "readRawValues", "class_h_m_c5883_l.html#aef71c4ee9d0a549cb86f6bb90bb238b2", null ],
+    [ "readScaledValues", "class_h_m_c5883_l.html#ac270d4672e1e0ed759ee07a504f2ab00", null ],
+    [ "readScaledValuesSingle", "class_h_m_c5883_l.html#a16828549ee509bb4fa8a3995424c8889", null ],
+    [ "runNegTest", "class_h_m_c5883_l.html#a6285036cc2d7c6f320b5eda766cf71e5", null ],
+    [ "runPosTest", "class_h_m_c5883_l.html#a041550377640f94f3d78cac70a781093", null ],
+    [ "setAveragingRate", "class_h_m_c5883_l.html#aed6ab6cfe07eafee7d99012dc092e41d", null ],
+    [ "setBiasMode", "class_h_m_c5883_l.html#af5b858a870f8f961d5540a18393eabf0", null ],
+    [ "setGain", "class_h_m_c5883_l.html#ac5d70ea9d043a7829d3410b6ed42d72d", null ],
+    [ "setHighSpeedI2CMode", "class_h_m_c5883_l.html#a44596be4b636171ac21f3b80a6f46ee0", null ],
+    [ "setMeasurementMode", "class_h_m_c5883_l.html#a6d584d734dfe62dad7ac7e32174285e9", null ],
+    [ "setOutputRate", "class_h_m_c5883_l.html#a5c4eda2a75638936d50b25484b96147f", null ]
+];
