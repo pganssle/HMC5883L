@@ -170,7 +170,7 @@ Vec3<float>  HMC5883L::readScaledValues(uint8_t *saturated) {
 }
 
 Vec3<float> HMC5883L::readScaledValuesSingle(uint8_t *saturated, uint32_t max_retries, 
-                                             float delay_time) {
+                                             uint32_t delay_time) {
     /** Wrapper for `readScaledValues()` which makes a single measurement
 
     The device is put into single measurement mode, then wait `delay_time` (in milliseconds), 
@@ -252,7 +252,7 @@ Vec3<float> HMC5883L::readCalibratedValues(uint8_t *saturated) {
 }
 
 Vec3<float> HMC5883L::readCalibratedValuesSingle(uint8_t *saturated, uint32_t max_retries,
-                                                 float delay_time) {
+                                                 uint32_t delay_time) {
     /** Return the field vector, scaled by the calibration, in milliGauss.
 
     Makes a single call to `readScaledValuesSingle()`, then scales the results by the calibration
@@ -752,4 +752,9 @@ uint8_t HMC5883L::getBiasMode(bool updateCache) {
     }
 
     return biasMode;
+}
+
+uint8_t HMC5883L:get_error_code() {
+    /** Return the error code set by one of the functions. */
+    return err_code;
 }
